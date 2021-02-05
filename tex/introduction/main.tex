@@ -1,0 +1,40 @@
+\chapter{Introduction}
+\label{chap:introduction}
+
+It is a good idea to keep your tex files short.
+This makes them easier to edit and navigate.
+For example, I like to create my figures in separate tex files.
+Then, you can easily insert them using the "input" command.
+Insert a figure:
+
+\input{tex/figures/sample_figure.tex}
+
+\clearpage % force new page
+
+Insert a figure containing a grid of subfigures:
+
+\input{tex/figures/sample_figure_grid.tex}
+
+% OPTIONAL: \FloatBarrier can be used to prevent figures from floating too far.
+% Use this sparingly! Preferably only when you are doing a final revision.
+\FloatBarrier
+
+To cite a paper, you can do this~\cite{ioffe2015batch}.
+To reference a figure, chapter, or section within your thesis, try
+\cref{fig:sample_figure} or
+\cref{chap:background} or
+\cref{sec:methods/section_a}.
+
+If you want to include sections within the chapter,
+I recommend splitting them up into separate files,
+and then using the "input" command to include them.
+If you use Overleaf,
+you can double click on any text in the PDF to jump to its latex code.
+
+Here are a couple of sections:
+
+\input{tex/introduction/section_a.tex}
+
+\input{tex/introduction/section_b.tex}
+
+\input{tex/introduction/thesis_preview.tex}

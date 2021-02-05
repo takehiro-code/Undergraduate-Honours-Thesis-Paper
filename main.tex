@@ -1,0 +1,71 @@
+\documentclass[]{sfuthesis}
+
+\input{tex/preamble}
+\tikzexternalize[prefix=out/, optimize command away=\includepdf]
+
+\title{Impact of Video Compression on Object Tracking Performance}
+\author{Takehiro Tanaka}
+\date{April 9, 2021}
+
+\thesistype{Thesis}
+\previousdegrees{}
+\degree{Bachelor of Applied Science (Honours)}
+\discipline{Engineering Physics}
+\department{School of Engineering Science}
+\faculty{Faculty of Applied Sciences}
+\copyrightyear{2021}
+\semester{Spring 2021}
+
+\keywords{%
+  deep learning;
+  collaborative intelligence;
+  inference%
+}
+
+\committee{%
+  \chair{Dr. Ivan V. Baji\'c, P.Eng.}{Academic Supervisor \\ Professor}
+  \member{Dr. Mirza Faisal Beg, P.Eng.}{Committee \\ Professor}
+  \member{Dr. Jie Liang, P.Eng.}{Committee \\ Professor}
+}
+
+\begin{document}
+
+\frontmatter
+
+\maketitle
+% NOTE: Remove the next line once you have a signed approval page
+\makecommittee
+% NOTE: Include the next line once you have a signed approval page
+% \includepdf[pages=-]{approval.pdf}
+\include{tex/abstract}
+\include{tex/acknowledgments}
+
+\clearpage
+\phantomsection
+\pdfbookmark{\contentsname}{toc}
+\tableofcontents
+\listoffigures
+
+\clearpage
+\pagenumbering{arabic}
+
+\mainmatter
+
+% Chapters
+\include{tex/introduction/main}
+\include{tex/background/main}
+\include{tex/methods/main}
+\include{tex/results/main}
+\include{tex/conclusion/main}
+
+\backmatter
+
+\clearpage
+\phantomsection
+\addcontentsline{toc}{chapter}{References}
+\printbibliography[title=References]
+
+\appendix
+\input{tex/appendix.tex}
+
+\end{document}

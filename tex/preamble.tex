@@ -1,0 +1,159 @@
+\usepackage[english]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{newtxtext}
+
+% Load before most packages https://tex.stackexchange.com/a/26592/2930
+\usepackage[hidelinks, pdfusetitle]{hyperref}
+
+\usepackage{amssymb}
+\usepackage[titletoc]{appendix}
+\usepackage[style=ieee]{biblatex}
+\usepackage[font=small, skip=12pt, labelfont=bf]{caption}
+\usepackage{fancyvrb}
+\usepackage{float}
+\usepackage{fp}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{import}
+\usepackage{makecmds}
+\usepackage{mathtools}
+\usepackage[outputdir=out]{minted}
+\usepackage[super]{nth}
+\usepackage{pdfpages}
+\usepackage{placeins}
+\usepackage{setspace}
+\usepackage{standalone}
+\usepackage{subcaption}
+\usepackage{tabularx}
+\usepackage{titlesec}
+\usepackage{trimspaces}
+\usepackage{xcolor}
+
+% Load after minted (and fvextra)
+\usepackage{csquotes}
+
+% Load after xcolor
+\usepackage{tikz}
+
+% Load after subcaption
+\usepackage{alphalph}
+
+% Load after amsmath
+\usepackage[capitalize, nameinlink, noabbrev]{cleveref}
+
+% Abstract for book documentclass
+\provideenvironment{abstract}{}{}
+\usepackage{abstract}
+
+% Custom packages
+\usepackage{review}
+
+% References
+\addbibresource{references.bib}
+
+% TikZ libraries
+\usetikzlibrary{
+  arrows.meta,
+  calc,
+  external,
+  hobby,
+  shapes,
+}
+
+% Code listing style
+\usemintedstyle{pastie}
+
+% Suppress warnings
+\pdfsuppresswarningpagegroup=1
+
+% Keep footnotes on one page
+\interfootnotelinepenalty=10000
+
+% Page margins
+\newgeometry{
+  top=1in,
+  left=1.25in,
+  bottom=0.7in,
+  right=1.25in,
+  includefoot
+}
+
+% Line spacing
+\onehalfspacing
+
+% Empty header; page number in footer
+\pagestyle{plain}
+
+% Automatically style inner and outer quotation marks
+\MakeOuterQuote{"}
+
+% Citation style
+\DeclareFieldFormat{title}{\mkbibquote{#1}}
+
+% Allow spaces to stretch more to prevent overfull \hbox problems. See:
+% https://tex.stackexchange.com/a/59131 and
+% https://tex.stackexchange.com/a/50850
+\setlength{\emergencystretch}{3em}
+
+% Alpha-alpha numbering for subfigures; e.g., (a) ... (z) (aa) (ab) ...
+\renewcommand*{\thesubfigure}{\alphalph{\value{subfigure}}}
+
+% Text labels
+\newcommand{\comment}[1]{#1}
+\newcommand{\incorporate}[1]{#1}
+\newcommand{\fixword}[1]{#1}
+\newcommand{\fakeref}[1]{\textbf{#1}}
+
+% Trim spaces within commands
+\makeatletter
+\newcommand*{\trim}[1]{%
+  \trim@spaces@noexp{#1}%
+}
+\makeatother
+
+% Environment for aligned symbol definitions
+\newenvironment{conditions}{%
+  \par\vspace{\abovedisplayskip}\noindent
+  \tabularx{\columnwidth}{%
+    >{$}l<{$} @{${}={}$} >{\raggedright\arraybackslash}X%
+  }%
+}{%
+  \endtabularx\par\vspace{\belowdisplayskip}%
+}
+
+% Formatting for HWC tensor shape
+\newcommand{\hwc}[3]{%
+  $#1 \times #2 \times #3$%
+}
+
+% Command for referencing subfigures within figure captions
+\newcommand{\csubref}[1]{%
+  (\subref{#1})%
+}
+
+% cref equation references in the style of (1)
+\crefname{equation}{}{}
+
+% Code listing
+\newif\ifhighlightcode
+\highlightcodetrue
+
+\makeatletter
+\ifhighlightcode%
+  \let\codelisting\minted
+  \let\endcodelisting\endminted
+\else%
+  \newenvironment{codelisting}[2][]{%
+    \VerbatimEnvironment
+    \begin{Verbatim}%
+  }{%
+    \end{Verbatim}%
+    \ignorespacesafterend%
+  }%
+\fi
+\makeatother
+
+% Review
+% \enablereview

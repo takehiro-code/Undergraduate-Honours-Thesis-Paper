@@ -1,0 +1,22 @@
+\clearpage
+\phantomsection
+\addcontentsline{toc}{chapter}{Abstract}
+\newcounter{abstractpage}
+\setcounter{abstractpage}{\value{page}}
+
+\begin{abstract}
+  \thispagestyle{plain}
+  \setcounter{page}{\value{abstractpage}}
+
+  This is a very compelling thesis abstract.
+  It is important to write compelling thesis abstracts.
+  Readers usually like to read abstracts and figures.
+  So, it is important to write a good one.
+
+  Write some more here...
+
+  \setcounter{abstractpage}{\value{page}}
+\end{abstract}
+
+\setcounter{page}{\value{abstractpage}}
+\stepcounter{page}
