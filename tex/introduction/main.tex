@@ -1,37 +1,44 @@
 \chapter{Introduction}
 \label{chap:introduction}
 
-It is a good idea to keep your tex files short.
-This makes them easier to edit and navigate.
-For example, I like to create my figures in separate tex files.
-Then, you can easily insert them using the "input" command.
-Insert a figure:
+%It is a good idea to keep your tex files short.
+%This makes them easier to edit and navigate.
+%For example, I like to create my figures in separate tex files.
+%Then, you can easily insert them using the "input" command.
+%Insert a figure:
 
-\input{tex/figures/sample_figure.tex}
+%\input{tex/figures/sample_figure.tex}
 
-\clearpage % force new page
+Object detection is a computer vision task that can recognizes the object instances from the digital images. Specifically, the object detection task detects the different classes of object such as person, cup, clock, etc. Understanding object detection allows us to achieve various applications such as “smart vehicle” by which means the system informs the driver if he or she is running in a right direction at a proper speed or system to detect pedestrians in order to prevent the accidents utilizing real-time object detections \cite{gavrila_real-time_1999}. Object detection task can further be developed to object tracking, which is another computer vision task derived from object detection. Object detection task is able to detect the objects for different class type but this task alone has no unique identification of objects within the same class in a sequence of image frames. For example, the system can detect multiple persons but there is no identifications of each person across the frames, and hence object tracking task will assign each unique ID to each object instance.
 
-Insert a figure containing a grid of subfigures:
+Video compression is ubiquitous in most of the visual processing pipelines. Compression in video is necessary because without compression of the video, it would be impractical to transmit the video and save in the storage device. For example, 720x480 pixels of full-color 90 min video with 30 frames per second (fps) has 167.96 GB from the group of  \citeauthor{ponlatha_comparison_2013} \cite{ponlatha_comparison_2013} is too huge in size to transmit. Since video compression is ubiquitous, any video we access are all pre-compressed and this raises the question of how much the video compression impacts on the object tracking performance. To our knowledge, effects of video compression on object tracking has not been studied well, so the goal of this project is to analyze the effect of video compression on the object tracking performance by assessing on the various metrics that are used for the multiple object tracking.
 
-\input{tex/figures/sample_figure_grid.tex}
+%\cite{zou_object_2019}.
 
-% OPTIONAL: \FloatBarrier can be used to prevent figures from floating too far.
-% Use this sparingly! Preferably only when you are doing a final revision.
-\FloatBarrier
 
-To cite a paper, you can do this~\cite{ioffe2015batch}.
-To reference a figure, chapter, or section within your thesis, try
-\cref{fig:sample_figure} or
-\cref{chap:background} or
-\cref{sec:methods/section_a}.
+% \clearpage % force new page
 
-If you want to include sections within the chapter,
-I recommend splitting them up into separate files,
-and then using the "input" command to include them.
-If you use Overleaf,
-you can double click on any text in the PDF to jump to its latex code.
+% Insert a figure containing a grid of subfigures:
 
-Here are a couple of sections:
+% \input{tex/figures/sample_figure_grid.tex}
+
+% % OPTIONAL: \FloatBarrier can be used to prevent figures from floating too far.
+% % Use this sparingly! Preferably only when you are doing a final revision.
+% \FloatBarrier
+
+% To cite a paper, you can do this~\cite{ioffe2015batch}.
+% To reference a figure, chapter, or section within your thesis, try
+% \cref{fig:sample_figure} or
+% \cref{chap:background} or
+% \cref{sec:methods/section_a}.
+
+% If you want to include sections within the chapter,
+% I recommend splitting them up into separate files,
+% and then using the "input" command to include them.
+% If you use Overleaf,
+% you can double click on any text in the PDF to jump to its latex code.
+
+% Here are a couple of sections:
 
 \input{tex/introduction/section_a.tex}
 
