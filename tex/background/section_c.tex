@@ -1,35 +1,3 @@
-\section{Multi Object Tracking Metrics}
+\section{Video Compression Configurations}
 \label{sec:background/section_c}
-
-To evaluate the object tracking performance, the following metrics have been considered.
-
-
-\begin{itemize}
-
-
-\item \textbf{FP}: False Positive. A number of times the detector falsely detects a target \cite{ristani_performance_2016}.
-
-\item \textbf{FN}: False Negative. This metric is opposite of FP, i.e. a number of times the detector falsely not detecting a target \cite{ristani_performance_2016}.
-
-Note that True Positive (TP) is a number of times the detector correctly detects a target.
-
-Also, TP and FP are based on the value of Intersection of Union value, which is defined as the area of intersection of detected bounding box and ground truth bounding box divided by union of those boxes. For example, if IOU threshold set 0.5 in the detector, and when we obtain the IOU value 0.8 at one target object, we count it as TP. If we obtain IOU value of 0.2, then we count it as FP.
-
-\item \textbf{Precision}: A number of correct detections divided by a number of all detections made by the detector, which can be represented in equation as follows. This metric measures how well the object is localized by the detector \cite{ristani_performance_2016} \cite{milan_mot16_2016}.
-\begin{equation}
-Precision = \frac{TP}{TP + FP}
-\end{equation}
-
-\item \textbf{Recall}: A number of correct detections divided by a number of objects from the ground truth, which can be represented in equation as follows.
-\begin{equation}
-Recall = \frac{TP}{TP + FN}
-\end{equation}
-
-\item \textbf{MOTA}: Multiple Object Tracking Accuracy. 
-
-\item \textbf{MOTP}: Multiple Object Tracking Precision.
-
-
-
-\end{itemize}
 
