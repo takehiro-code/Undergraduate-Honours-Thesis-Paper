@@ -1,21 +1,15 @@
 \section{Video Compression}
 \label{sec:introduction/section_b}
 
-The early video compression form is first described by Ray Davis Kell in 1929 as the difficulty of transmitting the whole successive images of video can be avoided by only sending the difference between the successive images, though it was not actually used however became the foundation for the video compression standards today \cite{jacobs_brief_2009}. \citeauthor{jacobs_brief_2009} explained that the video system was originated from the oscilloscope with Cathode Ray Tubes. The early video compression in the analog system was interlacing which transmits the even and odd lines alternatively but the digital video processing has been developed and is widely used today. Video compression consists of the encoder to compress the images into the compressed form which can be stored or transmits to the other location, and decoder to de-compress the images. This coding and de-coding is also called codec. The typical video compression standards nowadays comprise of predictive coding, transform coding, and entropy coding. Predictive coding is the component that reduces the information
+The early video compression form is first described by Ray Davis Kell in 1929 as the difficulty of transmitting the whole successive images of video can be avoided by only sending the difference between the successive images, though it was not actually used however became the foundation for the video compression standards today \cite{jacobs_brief_2009}. \citeauthor{jacobs_brief_2009} explained that the video system was originated from the oscilloscope with Cathode Ray Tubes. The early video compression was the analog system but the digital video processing has been developed and is widely used today. \citeauthor{zhang_overview_2019} explained the concept of typical video compression today as following \cite{zhang_overview_2019}. The video compression consists of the encoder to compress the images into the compressed form which can be stored or transmits to the other location, and decoder to de-compress the images. This process of coding and de-coding is also called codec. The typical video compression standards nowadays comprise of predictive coding, transform coding, and entropy coding as shown in Fig. \ref{fig:comp_architecture}. Predictive coding is the component that reduces the inter-frame temporal redundancy and intra-frame spatial redundancies of video by motion estimation (ME) and motion compensation (MC) techniques. Transform coding is the component where the transform coefficients that are quantized are generated through discrete cosine transforms (DCT) to help reducing the spatial dependencies. Entropy coding is the component where compressed bit streams are generated.
+
+\input{tex/figures/comp_architecture}
+
 There are two type of video coding; losssless coding and lossy coding. Lossless coding compresses the images and reconstructed images can be obtained after de-compression without any loss of information. Lossy coding however compresses the images by removing the less important information, which will sacrifice the image quality to the level the human visual system can be tolerant. Lossy compression is more widely used today since it allows much lower compressed size and more efficient than the lossless manner.
 
+Since the first video compression standard of H.120 that has been developed in 1984, the various video compression standards have been developed such as MPEG and H.26X series \cite{zhang_overview_2019}.
 
 
 
-Since then various video compression standards have been developed such as MPEG and H.26X series \cite{zhang_overview_2019} and is listed as following.
 
-\begin{itemize}
-
-\item \textbf{H.120}: The first digital video compression standard that has been developed in 1984 but is depreciated today.
-
-\item \textbf{H.261}: 
-
-
-\end{itemize}
-
-
+The organization of Video Coding Expert Group (VCEG) of International Telecommunication Union (ITU-T) are developing H.26X series starting from the first standard of H.120, then developed H.261, H.262, H.263, H.264(AVC), and H.265 (HEVC). H.264 or so called Advanced Video Coding (AVC) were developed in 2003 and the typical architecture shown in Fig.\ref{fig:comp_architecture} were followed since H.264/AVC. H.264/AVC is the most widely used standard nowadays and supports up to 4k (4096×2304) resolution of video.
