@@ -11,14 +11,18 @@ which is given by \citeauthor{redmon_you_2016}. The dimension of final predictio
 YOLO is much faster in speed and suitable to the real-time application but gives relatively lower accuracy than other state-of-the-art two-stage object detectors and hard to localize the small objects. Also, as a limitation, each cell in the grid can predict 2 boxes ($B=2$) but only estimate one class. YOLOv2 has been developed to resolve some issues that exist in YOLO as well as incremental improvements as described by \citeauthor{redmon_yolo9000_2017} \cite{redmon_yolo9000_2017}. YOLOv2 primarily focuses on improving recall and localization while preserving classification errors and speed. Anchor boxes have been implemented to predict the bounding boxes based on the chosen anchor boxes. Using anchor boxes, YOLOv2 estimates a bounding box by an offset from the anchor box instead of estimating the coordinates directly as in YOLO. This allows the network to learn easier and detect multiple objects per cell from multiple anchor boxes. The anchor boxes have been automatically chosen using k-means clustering. Other features are also implemented in YOLOv2, such as batch normalization, high-resolution classifier, and multi-scale training, providing better speed and accuracy. YOLOv3 has been developed as an incremental improvement to the YOLOv2 as described by \citeauthor{redmon_yolov3_2018} \cite{redmon_yolov3_2018}. Similar to YOLOv2, YOLOv3 predicts bounding boxes based on anchor boxes with k-means clustering, and the logistic regression has been implemented to predict the objectiveness score. If the bounding box overlaps on the ground truth more than any other anchor boxes, the objectiveness score will be 1. However, other bounding boxes will be ignored in this cell if they overlap more than than the defined IOU threshold. As other improvements, YOLOv3 uses an independent logistic classifier instead of softmax that is implemented in YOLOv2 to allow multi-label class predictions. Also, YOLOv3 predicts tensor at 3 different scales across the network, and the dimension of the final encoded tensor will be $S \times S \times k \times (5 + C)$ where $k$ is the number of anchor boxes. With these improvements, YOLOv3 achieves localizing smaller objects while maintaining speed and accuracy.
 
 Based on this concept, we have chosen the YOLOv3 object detector developed by Ultralytics \cite{jocher_ultralyticsyolov3_2021} with the provided pre-trained weight. The developer \citeauthor{jocher_ultralyticsyolov3_2021} pre-trained the network with the backbone of darknet53, and the model is 261 layers with 61922845 parameters. The 2017 COCO dataset was used for training with 118287 train images, 5000 validation images, and 20288 out of 40670 test images, and this network with the pre-trained weight can detect objects of 80 classes available from the COCO dataset. To compare the chosen YOLOv3 detector from Ultralytics with the original implementation of YOLOv3 by \citeauthor{redmon_yolov3_2018}, the comparison of Average Precision (AP) on the COCO dataset has been shown in the following table. The assumption on this comparison is that the AP and AP\textsubscript{50} are reported based on the 2017 version of the Microsoft COCO dataset. The detector's result from the Ultralytics is based on the fixed input resolution of image 640x640, whereas the result reported for the original YOLOv3 is based on 608x608. As you can see in the following table, our chosen detector from Ultralytics gives better detection accuracy than the original implementation.
-\begin{center}
- \begin{tabular}{||c | c c||} 
- \hline
-  - & AP & AP\textsubscript{50} \\ [0.5ex]
- \hline\hline
-  YOLOv3 608 - Darknet53 & 33 & 57.9\\ 
- \hline
- YOLOv3 640 - Ultralytics & 43.3 & 63.0 \\
- \hline
-\end{tabular}
-\end{center}
+
+\begin{table}[]
+    \centering
+    \caption{Comparison of YOLOv3 Program to the Original Implementation}
+     \begin{tabular}{||c | c c||} 
+     \hline
+      - & AP & AP\textsubscript{50} \\ [0.5ex]
+     \hline\hline
+      YOLOv3 608 - Darknet53 & 33 & 57.9\\ 
+     \hline
+     YOLOv3 640 - Ultralytics & 43.3 & 63.0 \\
+     \hline
+    \end{tabular}
+    \label{tab:yolov3}
+\end{table}

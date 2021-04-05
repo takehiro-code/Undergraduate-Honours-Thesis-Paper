@@ -1,4 +1,56 @@
-\section{Insert interesting title (A)}
+\section{Description of Dataset}
 \label{sec:methods/section_a}
 
-Text goes here.
+To our understanding, there is no public or open source dataset of uncompressed video sequences with ground truths. Our group members prepared the uncompressed video sequences and annotated them to obtain ground truths in YOLO format. The existing ground truths prepared by the our group members are suitable for the object detection; however, for the purpose of analyzing the tracking performance, we further annotate the unique object identifiers (IDs) on the existing ground truths using Normalized Cross-correlation (NCC).
+\begin{table}[htb]
+    \centering
+    \caption{List of Video Sequences \cite{choi_vcm_2020}}
+    \begin{tabular}{|| c | c | c | c | c | c ||}
+         \hline
+          Sequence Class & Sequence Name & Frame Count & Resolution & Frame rate (Hz) & Bit depth  \\ [0.5ex]
+         \hline\hline
+          B & BasketballDrive & 500 & 1920x1080 & 50 & 8 \\ 
+         \hline
+          B & Cactus & 500 & 1920x1080 & 50 & 8 \\ 
+         \hline
+          B & Kimono & 240 & 1920x1080 & 24 & 8 \\
+         \hline
+          B & ParkScene & 240 & 1920x1080 & 24 & 8 \\
+         \hline
+          C & BasketballDrill & 500 & 832x480 & 50 & 8 \\
+         \hline
+          C & PartyScene & 500 & 832x480 & 50 & 8 \\
+         \hline
+          C & RaceHorses & 300 & 832x480 & 30 & 8 \\
+         \hline
+          D & BasketballPass & 500 & 416x240 & 50 & 8 \\
+         \hline
+          D & BlowingBubbles & 500 & 416x240 & 50 & 8 \\
+          \hline
+          D & RaceHorses & 500 & 416x240 & 30 & 8 \\
+          \hline
+          E & KristenAndSara & 600 & 1280x720 & 60 & 8 \\
+          \hline
+          E & Johnny & 600 & 1280x720 & 60 & 8 \\
+          \hline
+          E & FourPeople & 600 & 1280x720 & 60 & 8 \\
+          \hline
+    \end{tabular}
+    \label{tab:seq_list}
+\end{table}
+The Table \ref{tab:seq_list} shows the 13 uncompressed video sequences with prepared ground truths out of 17 available video sequences from \cite{choi_vcm_2020}. NCC was used to annotate the object IDs between each bounding boxes. The highest value of correlation was assigned automatically while manual correlation was necessary to correct the IDs. 
+
+
+
+
+The ground truth in YOLO format is:
+
+\begin{myfont}
+\centering
+Class ID, Object ID, center X, center Y, Width, Height
+\end{myfont}
+
+
+
+
+The object tracking pipeline consists of 
