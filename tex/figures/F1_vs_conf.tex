@@ -1,0 +1,24 @@
+% \begin{figure}[htb]
+%   \centering
+%   \includegraphics[width=1.0\linewidth]{img/F1_vs_conf_plot.png}
+%   \caption[Detection performance F1 over different confidence threshold and IOU threshold for NMS]{
+    
+%   }
+%   \label{fig:F1_vs_conf}
+% \end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{subfigure}{0.5\textwidth}
+    \includegraphics[width=\linewidth]{img/F1_vs_conf_table.png}
+    \caption{Highest F1 score on different confidence and IOU threshold}
+    \label{fig:F1_vs_conf_table}
+  \end{subfigure}
+   \begin{subfigure}{1.0\textwidth}
+    \includegraphics[width=\linewidth]{img/F1_vs_conf_plot.pdf}
+    \caption{F1 vs confidence threshold over different IOU threshold plot}
+    \label{fig:F1_vs_conf_plot}
+  \end{subfigure}
+  \caption{}
+  \label{fig:F1_vs_conf} % label should be placed below caption
+\end{figure}
