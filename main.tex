@@ -4,6 +4,10 @@
 \usepackage{mathastext}
 \usepackage{caption}
 \usepackage{float}
+\usepackage{booktabs,longtable}
+\usepackage{graphicx}
+\newenvironment{myfont}{\fontfamily{pcr}\selectfont}{\par}
+
 
 
 \input{tex/preamble}
@@ -74,6 +78,6 @@
 \printbibliography[title=References]
 
 \appendix
-\input{tex/appendix.tex}
+\input{tex/appendix/main}
 
 \end{document}
