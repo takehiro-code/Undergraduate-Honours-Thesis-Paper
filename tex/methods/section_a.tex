@@ -2,43 +2,10 @@
 \label{sec:methods/section_a}
 
 To our understanding, there is no public or open source dataset of uncompressed video sequences with ground truths. Our group members prepared the uncompressed video sequences and annotated them to obtain ground truths in YOLO format. The existing ground truths prepared by the our group members are suitable for the object detection; however, for the purpose of analyzing the tracking performance, we further annotate the unique object identifiers (IDs) on the existing ground truths using Normalized Cross-correlation (NCC).
-\begin{table}[htb]
-    \centering
-    \caption{List of Video Sequences \cite{choi_vcm_2020}}
-    \begin{tabular}{|| c | c | c | c | c | c ||}
-         \hline
-          Sequence Class & Sequence Name & Frame Count & Resolution & Frame rate (Hz) & Bit depth  \\ [0.5ex]
-         \hline\hline
-          B & BasketballDrive & 500 & 1920x1080 & 50 & 8 \\ 
-         \hline
-          B & Cactus & 500 & 1920x1080 & 50 & 8 \\ 
-         \hline
-          B & Kimono & 240 & 1920x1080 & 24 & 8 \\
-         \hline
-          B & ParkScene & 240 & 1920x1080 & 24 & 8 \\
-         \hline
-          C & BasketballDrill & 500 & 832x480 & 50 & 8 \\
-         \hline
-          C & PartyScene & 500 & 832x480 & 50 & 8 \\
-         \hline
-          C & RaceHorses & 300 & 832x480 & 30 & 8 \\
-         \hline
-          D & BasketballPass & 500 & 416x240 & 50 & 8 \\
-         \hline
-          D & BlowingBubbles & 500 & 416x240 & 50 & 8 \\
-          \hline
-          D & RaceHorses & 500 & 416x240 & 30 & 8 \\
-          \hline
-          E & KristenAndSara & 600 & 1280x720 & 60 & 8 \\
-          \hline
-          E & Johnny & 600 & 1280x720 & 60 & 8 \\
-          \hline
-          E & FourPeople & 600 & 1280x720 & 60 & 8 \\
-          \hline
-    \end{tabular}
-    \label{tab:seq_list}
-\end{table}
-Table \ref{tab:seq_list} shows the 13 uncompressed video sequences with prepared ground truths out of 17 available video sequences from \cite{choi_vcm_2020}. The object tracking pipeline consists of YOLOv3 detector and SORT as shown in Figure \ref{fig:yolov3+SORT}. 
+\input{tex/tables/seq_list}
+Table \ref{tab:seq_list} shows the 13 uncompressed video sequences with prepared ground truths out of 18 available video sequences from \cite{choi_vcm_2020}. The sequence class (B, C, D, E) differs by the resolution (Width x Height). Each sequence has different number of object classes and each class ID is from 80 COCO object classes \cite{lin_microsoft_2014}. Table \ref{tab:class_id} adapted from \cite{choi_vcm_2020} shows the corresponding object class name to each class ID, and we only listed the object classes that we detect and track in the given sequences from Table \cite{tab:seq_list}.
+\input{tex/tables/class_id}
+The uncompressed sequences are in YUV420 format. The object tracking pipeline consists of YOLOv3 detector and SORT as shown in Figure \ref{fig:yolov3+SORT}. 
 \input{tex/figures/YOLOv3+SORT}
 Input video sequence of png files are input to the YOLOv3 object detector. The output from YOLOv3 as detected results will be generated in YOLO format as [Class ID, Center x, Center y, Width, Height, Confidence]. Class ID indicates the identifier to the type of class; for example, person as 0, sports ball as 32, and chair as 56, which are part of the 80 COCO classes. Center x and Center y are center position of bounding box, width and height are the corresponding dimension of boxes. Confidence indicates the score of how confident the object is detected. These results are converted to MOT format used in \textit{MOTChallenge} 2015 benchmark \cite{leal-taixe_motchallenge_2015}. The object IDs, the unique identifiers to the objects, for the detected results are initialized as -1. Applying SORT to this detected result, we obtain the tracking result in MOT format with the assigned object IDs as [Frame index, Object ID, Top-left x, Top-left y, Width, Height, Confidence, 3D x, 3D y, 3D z]. Top-left x and Top-left y is the position of bounding box at the top-left corner. 3D x, 3D y, 3D z is the position of the bounding box in 3D dimension but we assigned -1 in our experiment since the real-world position is not applicable to our experiment. The ground truths are also converted from YOLO format to MOT format.
 

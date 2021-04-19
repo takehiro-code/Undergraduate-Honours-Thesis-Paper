@@ -1,7 +1,9 @@
-\section{Insert interesting title (A)}
+\section{Averaged Result of Multiple Video Sequences}
 \label{sec:results/section_a}
 
-Text goes here.
-Finding:
-- FP occurs more in blowing bubbles, toy is falsely detected as person. Higher the qp, image quality gets lower, then YOLOv3 is failing to falsely detect toy as person. --> FP decreases more sigfinicantly as qp increases than BasketballPass
-- BasketballPass, there is no object that is disguising or similar to person.
+Running the experiment with all the possible combinations of QP and MSR as shown in Table \ref{tab:qp_msr_range}, we obtained the result from all the 12 video sequences or 12 samples in a statistical term. Since we have multiple video samples, we averaged each score of metrics with respect to QP and MSR. Table \ref{tab:averaged_result_all} shows mean values of each score from the different metrics over different QP and MSR. Each numerical value is a mean of 12 measured values of score. Table \ref{tab:averaged_result_all_std} shows their standard deviation values. Since each video sample differs in resolution, frame rare, number of objects and object classes, tracking performance is different. Due to the lack of video samples, the standard deviation is high among the 12 video samples. We believe that to have lower standard deviation, we need to have more video samples. As there are 20 metrics for object tracking performance and MOTA is a good indicator for the general tracking performance as explained in Chapter \ref{chap:background}, we visualized MOTA score for different QP and MSR as shown in Figure \ref{fig:averaged_result_all}. 
+\input{tex/tables/averaged_result_all_mean}
+\input{tex/tables/averaged_result_all_std}
+\input{tex/figures/averaged_result_all}
+As you can see from the plot, the uncompressed video sequences achieved the highest performance of MOTA score. For the compressed sequences, MOTA score is lower than the uncompressed result and the higher the QP, the lower the MOTA score. Not only MOTA, we observed that the performance score of most of the metrics decrease as QP increases except IDP, Precision, and MOTP. According to the hypothesis stated in Chapter \ref{chap:background/section_e}, the higher the QP, the lower the bitrate and pixel rate, so we expected the tracking performance to be lower, and our QP result from the most metrics are consistent with the hypothesis. However, for the MSR, we do not see significant differences. To show the significant impact of QP and MSR on the each metrics score, we conducted a regression analysis. Since we have 2 independent variable
+ 
