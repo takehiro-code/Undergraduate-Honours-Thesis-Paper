@@ -1,4 +1,14 @@
 \section{Case Study of Individual Sequences}
 \label{sec:results/section_b}
 
-In this section, we will look into the individual sequences to support the averaged result obtained in the earlier section. 
+In this section, we will look into the individual sequences to support the averaged result obtained in the earlier section. Out of 12 video samples, we observed the two cases of different results as we named Case I and Case II. For the first case, the result is consistent with the hypothesis on different QP such that the tracking performance decreases as QP increases while showing lower performances than the uncompressed sequences. However, for the second case, the tracking performance increases but starts decreasing at high QP, and the performance for the compressed sequences outperform the uncompressed ones before the high QP. We observed that the Case I is observed in most of the video sequences except Class B Cactus, Class D Blowing Bubbles, Class E FourPeople, and Class E KristenAndSara which are observed in Case II. We will examine the Class D BasketballPass and Class D BlowingBubbles sequences that fall in Case I and Case II respectively. Instead of tracking all of the object classes, we limit the tracking on the Person class to analyze the difference between the two cases. The Person class is "cleaner" in result than other classes because the Person object class is more continuously present across the frames while other object classes such as Sports ball and Handbag are more discontinuous in frames.
+
+
+\subsection{Case I: Class D BasketballPass}
+To see the result that falls within the category of Case I that contribute to the averaged result, we examined the result from the individual video sequence of Class D BasketballPass. Figure \ref{fig:BasketballPass_0_multiplots_qp} shows all the performance score on different QP at MSR = 16 from the video and Table \ref{tab:BasketballPass_0} shows each numerical value. We selected MSR = 16 out of different MSR values since different MSR did not make a significant difference from the regression analysis in the previous section.
+\input{tex/figures/BasketballPass_0_multiplots_qp}
+\input{tex/tables/BasketballPass_0}
+The result is consistent with the averaged result shown in Chapter \ref{sec:results/section_a} such that the performance decreases as QP increases on most of the metrics except IDP and MOTP. To examine the result more thoroughly, we inspected the video sequence in frame by frame at different QP. 
+
+
+\subsection{Case II: Class D BlowingBubbles}

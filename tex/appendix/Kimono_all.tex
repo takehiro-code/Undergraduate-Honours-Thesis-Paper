@@ -1,0 +1,173 @@
+
+\section{Class B Kimono}
+\label{sec:appendix/Kimono_all}
+
+
+% visualization figure
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=1.0\linewidth]{img/appendix/Kimono_all_multiplots_qp.pdf}
+\caption[Result of all object classes in Class B Kimono with Horizontal Axis of QP]{}
+\label{fig:Kimono_all_qp}
+\end{figure}
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=1.0\linewidth]{img/appendix/Kimono_all_multiplots_msr.pdf}
+\caption[Result of all object classes in Class B Kimono with Horizontal Axis of MSR]{}
+\label{fig:Kimono_all_msr}
+\end{figure}
+
+
+
+% table
+\begin{table}
+\centering
+\caption{Result of all object classes in Class B Kimono}
+
+
+% table for uncompressed
+\begin{subtable}[t]{\linewidth}
+\centering
+\vspace{0pt}
+\resizebox{1.0\linewidth}{!}{
+\begin{tabular}{llrrrrrrrrrrrrrrrrrrrr}
+\toprule
+          QP &          MSR &   IDTP &  IDFP &   IDFN &  IDF1 &   IDP &   IDR &  Recall &  Precision &    F1 &  GT &  MT &  PT &  ML &  TP &  FP &  FN &  IDs &  FM &  MOTA &  MOTP \\
+\midrule
+Uncompressed & Uncompressed & 140.00 & 95.00 & 222.00 & 46.90 & 59.60 & 38.70 &   64.90 &     100.00 & 78.71 &   2 &   1 &   0 &   1 & 235 &   0 & 127 &    1 &   1 & 64.60 & 85.70 \\
+\bottomrule
+\end{tabular}
+
+}
+\caption{Uncompressed Sequence}
+\end{subtable}
+
+
+% table for msr=8
+\begin{subtable}[t]{\linewidth}
+\centering
+\resizebox{1.0\linewidth}{!}{
+\begin{tabular}{rrrrrrrrrrrrrrrrrrrrrr}
+\toprule
+ QP &  MSR &   IDTP &  IDFP &   IDFN &  IDF1 &   IDP &   IDR &  Recall &  Precision &    F1 &  GT &  MT &  PT &  ML &  TP &  FP &  FN &  IDs &  FM &  MOTA &  MOTP \\
+\midrule
+ 18 &    8 & 141.00 & 96.00 & 221.00 & 47.10 & 59.50 & 39.00 &   65.50 &     100.00 & 79.15 &   2 &   1 &   0 &   1 & 237 &   0 & 125 &    2 &   2 & 64.90 & 86.00 \\
+ 22 &    8 & 142.00 & 95.00 & 220.00 & 47.40 & 59.90 & 39.20 &   65.50 &     100.00 & 79.15 &   2 &   1 &   0 &   1 & 237 &   0 & 125 &    1 &   1 & 65.20 & 86.10 \\
+ 26 &    8 & 140.00 & 95.00 & 222.00 & 46.90 & 59.60 & 38.70 &   64.90 &     100.00 & 78.71 &   2 &   1 &   0 &   1 & 235 &   0 & 127 &    1 &   1 & 64.60 & 86.30 \\
+ 30 &    8 & 141.00 & 95.00 & 221.00 & 47.20 & 59.70 & 39.00 &   65.20 &     100.00 & 78.93 &   2 &   1 &   0 &   1 & 236 &   0 & 126 &    1 &   1 & 64.90 & 86.10 \\
+ 34 &    8 & 140.00 & 95.00 & 222.00 & 46.90 & 59.60 & 38.70 &   64.90 &     100.00 & 78.71 &   2 &   1 &   0 &   1 & 235 &   0 & 127 &    1 &   1 & 64.60 & 86.30 \\
+ 38 &    8 & 140.00 & 97.00 & 222.00 & 46.70 & 59.10 & 38.70 &   64.90 &      99.20 & 78.47 &   2 &   1 &   0 &   1 & 235 &   2 & 127 &    1 &   1 & 64.10 & 86.10 \\
+ 42 &    8 & 140.00 & 95.00 & 222.00 & 46.90 & 59.60 & 38.70 &   64.90 &     100.00 & 78.71 &   2 &   1 &   0 &   1 & 235 &   0 & 127 &    1 &   1 & 64.60 & 86.20 \\
+ 46 &    8 & 140.00 & 95.00 & 222.00 & 46.90 & 59.60 & 38.70 &   64.90 &     100.00 & 78.71 &   2 &   1 &   0 &   1 & 235 &   0 & 127 &    1 &   1 & 64.60 & 86.40 \\
+\bottomrule
+\end{tabular}
+
+}
+\caption{MSR = 8}
+\end{subtable}
+
+
+
+% table for msr=16
+\begin{subtable}[t]{\linewidth}
+\centering
+\resizebox{1.0\linewidth}{!}{
+\begin{tabular}{rrrrrrrrrrrrrrrrrrrrrr}
+\toprule
+ QP &  MSR &   IDTP &  IDFP &   IDFN &  IDF1 &   IDP &   IDR &  Recall &  Precision &    F1 &  GT &  MT &  PT &  ML &  TP &  FP &  FN &  IDs &  FM &  MOTA &  MOTP \\
+\midrule
+ 18 &   16 & 142.00 & 95.00 & 220.00 & 47.40 & 59.90 & 39.20 &   65.50 &     100.00 & 79.15 &   2 &   1 &   0 &   1 & 237 &   0 & 125 &    1 &   1 & 65.20 & 85.90 \\
+ 22 &   16 & 142.00 & 95.00 & 220.00 & 47.40 & 59.90 & 39.20 &   65.50 &     100.00 & 79.15 &   2 &   1 &   0 &   1 & 237 &   0 & 125 &    1 &   1 & 65.20 & 86.10 \\
+ 26 &   16 & 140.00 & 95.00 & 222.00 & 46.90 & 59.60 & 38.70 &   64.90 &     100.00 & 78.71 &   2 &   1 &   0 &   1 & 235 &   0 & 127 &    1 &   1 & 64.60 & 86.10 \\
+ 30 &   16 & 140.00 & 95.00 & 222.00 & 46.90 & 59.60 & 38.70 &   64.90 &     100.00 & 78.71 &   2 &   1 &   0 &   1 & 235 &   0 & 127 &    1 &   1 & 64.60 & 86.40 \\
+ 34 &   16 & 140.00 & 96.00 & 222.00 & 46.80 & 59.30 & 38.70 &   64.90 &      99.60 & 78.59 &   2 &   1 &   0 &   1 & 235 &   1 & 127 &    1 &   1 & 64.40 & 86.10 \\
+ 38 &   16 & 140.00 & 97.00 & 222.00 & 46.70 & 59.10 & 38.70 &   64.90 &      99.20 & 78.47 &   2 &   1 &   0 &   1 & 235 &   2 & 127 &    1 &   1 & 64.10 & 86.30 \\
+ 42 &   16 & 140.00 & 95.00 & 222.00 & 46.90 & 59.60 & 38.70 &   64.90 &     100.00 & 78.71 &   2 &   1 &   0 &   1 & 235 &   0 & 127 &    1 &   1 & 64.60 & 86.20 \\
+ 46 &   16 & 140.00 & 95.00 & 222.00 & 46.90 & 59.60 & 38.70 &   64.90 &     100.00 & 78.71 &   2 &   1 &   0 &   1 & 235 &   0 & 127 &    1 &   1 & 64.60 & 86.10 \\
+\bottomrule
+\end{tabular}
+
+}
+\caption{MSR = 16}
+\end{subtable}
+
+
+% table for msr=32
+\begin{subtable}[t]{\linewidth}
+\centering
+\resizebox{1.0\linewidth}{!}{
+\begin{tabular}{rrrrrrrrrrrrrrrrrrrrrr}
+\toprule
+ QP &  MSR &   IDTP &  IDFP &   IDFN &  IDF1 &   IDP &   IDR &  Recall &  Precision &    F1 &  GT &  MT &  PT &  ML &  TP &  FP &  FN &  IDs &  FM &  MOTA &  MOTP \\
+\midrule
+ 18 &   32 & 143.00 & 95.00 & 219.00 & 47.70 & 60.10 & 39.50 &   65.70 &     100.00 & 79.30 &   2 &   1 &   0 &   1 & 238 &   0 & 124 &    1 &   1 & 65.50 & 85.60 \\
+ 22 &   32 & 142.00 & 96.00 & 220.00 & 47.30 & 59.70 & 39.20 &   65.70 &     100.00 & 79.30 &   2 &   1 &   0 &   1 & 238 &   0 & 124 &    2 &   2 & 65.20 & 86.10 \\
+ 26 &   32 & 140.00 & 95.00 & 222.00 & 46.90 & 59.60 & 38.70 &   64.90 &     100.00 & 78.71 &   2 &   1 &   0 &   1 & 235 &   0 & 127 &    1 &   1 & 64.60 & 86.20 \\
+ 30 &   32 & 140.00 & 95.00 & 222.00 & 46.90 & 59.60 & 38.70 &   64.90 &     100.00 & 78.71 &   2 &   1 &   0 &   1 & 235 &   0 & 127 &    1 &   1 & 64.60 & 86.30 \\
+ 34 &   32 & 140.00 & 95.00 & 222.00 & 46.90 & 59.60 & 38.70 &   64.90 &     100.00 & 78.71 &   2 &   1 &   0 &   1 & 235 &   0 & 127 &    1 &   1 & 64.60 & 86.30 \\
+ 38 &   32 & 140.00 & 97.00 & 222.00 & 46.70 & 59.10 & 38.70 &   64.90 &      99.20 & 78.47 &   2 &   1 &   0 &   1 & 235 &   2 & 127 &    1 &   1 & 64.10 & 86.50 \\
+ 42 &   32 & 140.00 & 95.00 & 222.00 & 46.90 & 59.60 & 38.70 &   64.90 &     100.00 & 78.71 &   2 &   1 &   0 &   1 & 235 &   0 & 127 &    1 &   1 & 64.60 & 86.20 \\
+ 46 &   32 & 140.00 & 95.00 & 222.00 & 46.90 & 59.60 & 38.70 &   64.90 &     100.00 & 78.71 &   2 &   1 &   0 &   1 & 235 &   0 & 127 &    1 &   1 & 64.60 & 86.10 \\
+\bottomrule
+\end{tabular}
+
+}
+\caption{MSR = 32}
+\end{subtable}
+
+
+% table for msr=64
+\begin{subtable}[t]{\linewidth}
+\centering
+\resizebox{1.0\linewidth}{!}{
+\begin{tabular}{rrrrrrrrrrrrrrrrrrrrrr}
+\toprule
+ QP &  MSR &   IDTP &  IDFP &   IDFN &  IDF1 &   IDP &   IDR &  Recall &  Precision &    F1 &  GT &  MT &  PT &  ML &  TP &  FP &  FN &  IDs &  FM &  MOTA &  MOTP \\
+\midrule
+ 18 &   64 & 142.00 & 95.00 & 220.00 & 47.40 & 59.90 & 39.20 &   65.50 &     100.00 & 79.15 &   2 &   1 &   0 &   1 & 237 &   0 & 125 &    1 &   1 & 65.20 & 86.00 \\
+ 22 &   64 & 144.00 & 95.00 & 218.00 & 47.90 & 60.30 & 39.80 &   66.00 &     100.00 & 79.52 &   2 &   1 &   0 &   1 & 239 &   0 & 123 &    1 &   1 & 65.70 & 86.20 \\
+ 26 &   64 & 141.00 & 95.00 & 221.00 & 47.20 & 59.70 & 39.00 &   65.20 &     100.00 & 78.93 &   2 &   1 &   0 &   1 & 236 &   0 & 126 &    1 &   1 & 64.90 & 85.90 \\
+ 30 &   64 & 140.00 & 95.00 & 222.00 & 46.90 & 59.60 & 38.70 &   64.90 &     100.00 & 78.71 &   2 &   1 &   0 &   1 & 235 &   0 & 127 &    1 &   1 & 64.60 & 86.30 \\
+ 34 &   64 & 140.00 & 95.00 & 222.00 & 46.90 & 59.60 & 38.70 &   64.90 &     100.00 & 78.71 &   2 &   1 &   0 &   1 & 235 &   0 & 127 &    1 &   1 & 64.60 & 86.60 \\
+ 38 &   64 & 140.00 & 97.00 & 222.00 & 46.70 & 59.10 & 38.70 &   64.90 &      99.20 & 78.47 &   2 &   1 &   0 &   1 & 235 &   2 & 127 &    1 &   1 & 64.10 & 86.40 \\
+ 42 &   64 & 140.00 & 95.00 & 222.00 & 46.90 & 59.60 & 38.70 &   64.90 &     100.00 & 78.71 &   2 &   1 &   0 &   1 & 235 &   0 & 127 &    1 &   1 & 64.60 & 86.60 \\
+ 46 &   64 & 140.00 & 95.00 & 222.00 & 46.90 & 59.60 & 38.70 &   64.90 &     100.00 & 78.71 &   2 &   1 &   0 &   1 & 235 &   0 & 127 &    1 &   1 & 64.60 & 86.20 \\
+\bottomrule
+\end{tabular}
+
+}
+\caption{MSR = 64}
+\end{subtable}
+
+
+\label{tab:Kimono_all}
+\end{table}
+
+
+
+
+\begin{table}[!htbp]
+\centering
+\caption{Multiple Linear Regression Analysis Result for Class B Kimono}
+\resizebox{1.0\linewidth}{!}{
+\begin{tabular}{lrrrrrrrrrrrrrrrrrrr}
+\toprule
+{} &   IDTP &  IDFP &   IDFN &  IDF1 &   IDP &   IDR &  Recall &  Precision &    F1 &    MT &   PT &    ML &     TP &    FP &     FN &   IDs &    FM &  MOTA &  MOTP \\
+\midrule
+coefficient(Intercept) & 142.12 & 95.31 & 219.88 & 47.43 & 59.84 & 39.24 &   65.71 &     100.12 & 79.34 &  1.00 & 0.00 &  1.00 & 237.73 & -0.31 & 124.27 &  1.61 &  1.61 & 65.33 & 85.92 \\
+coefficient(QP)        &  -0.05 &  0.00 &   0.05 & -0.01 & -0.01 & -0.01 &   -0.02 &      -0.01 & -0.02 & -0.00 & 0.00 & -0.00 &  -0.07 &  0.02 &   0.07 & -0.02 & -0.02 & -0.02 &  0.01 \\
+coefficient(MSR)       &   0.04 & -0.01 &  -0.04 &  0.01 &  0.01 &  0.01 &    0.01 &       0.00 &  0.01 & -0.00 & 0.00 & -0.00 &   0.03 & -0.00 &  -0.03 & -0.01 & -0.01 &  0.01 & -0.00 \\
+coefficient(QP*MSR)    &  -0.00 &  0.00 &   0.00 & -0.00 & -0.00 & -0.00 &   -0.00 &       0.00 & -0.00 &  0.00 & 0.00 &  0.00 &  -0.00 & -0.00 &   0.00 &  0.00 &  0.00 & -0.00 &  0.00 \\
+p-value(Intercept)     &   0.00 &  0.00 &   0.00 &  0.00 &  0.00 &  0.00 &    0.00 &       0.00 &  0.00 &  0.00 &  NaN &  0.00 &   0.00 &  0.69 &   0.00 &  0.00 &  0.00 &  0.00 &  0.00 \\
+p-value(QP)            &   0.04 &  0.89 &   0.04 &  0.05 &  0.25 &  0.05 &    0.01 &       0.41 &  0.01 &  0.11 &  NaN &  0.11 &   0.01 &  0.41 &   0.01 &  0.05 &  0.05 &  0.04 &  0.25 \\
+p-value(MSR)           &   0.10 &  0.68 &   0.10 &  0.12 &  0.21 &  0.09 &    0.27 &       0.99 &  0.35 &  0.14 &  NaN &  0.14 &   0.24 &  0.99 &   0.24 &  0.22 &  0.22 &  0.25 &  0.59 \\
+p-value(QP*MSR)        &   0.17 &  0.75 &   0.17 &  0.19 &  0.30 &  0.16 &    0.36 &       0.97 &  0.45 &  0.62 &  NaN &  0.62 &   0.32 &  0.97 &   0.32 &  0.28 &  0.28 &  0.34 &  0.36 \\
+\bottomrule
+\end{tabular}
+
+}
+\label{tab:Kimono_all_reg}
+\end{table}
+
+
