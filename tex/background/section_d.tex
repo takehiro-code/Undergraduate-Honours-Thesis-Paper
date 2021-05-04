@@ -66,7 +66,7 @@ IDF1 = 2 \cdot \frac{IDP \cdot IDR}{IDTP + IDFN}
 \label{eqn:IDF1}
 \end{equation}
 
-\item \textbf{IDs ($\downarrow$)}: Identity switches counts the number of times a different identity is assigned to a trajectory, which is also called mismatch.
+\item \textbf{IDs ($\downarrow$)}: Identity switches counts the number of times a different identity is assigned to a matched trajectory. This is also called mismatch. IDs is only counted when the newly assigned identity $\textit{i}$ on the trajectory matches with the ground truth trajectory with the identity $\textit{k}$, and the previously assigned trajectory with the identity $\textit{j}$ is not the same as $\textit{i}$.
 \end{itemize}
 
 
