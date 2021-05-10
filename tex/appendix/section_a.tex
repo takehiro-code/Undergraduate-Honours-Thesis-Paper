@@ -1,7 +1,5 @@
-\section{Object Detection and Tracking}
+\section{Justification of SORT Optimization}
 \label{sec:appendix/section_a}
 
-we will need to justify if other tracking metrics will achieve good performance or not. Table \ref{optimizing_tracker_table} shows the result of all evaluations metrics over different min hits. The results tells us that our selected parameters achieves good performance, therfore, we proceed with this selection and the table \ref{} summarizes the selected parameters in YOLOv3 and SORT.
+We optimized SORT based on maximizing MOTA on the training video sequence of Class C PartyScene as explained in Chapter \ref{sec:methods/section_b}. Since MOTA is not the only metric in MOT metrics, we will justify that SORT with YOLOv3 will achieve a good performance at max age of 1, min hits of 5, and IOU threshold of 0.4. Table \ref{tab:optimizing_tracker_table} shows the results of all the performance metrics at different min hits. Note that we fixed max age of 1 as suggested by \cite{abewley_abewleysort_2021} and IOU threshold of 0.4 based on the MOTA result.
 \input{tex/tables/optimizing_tracker_table}
-
-\input{tex/figures/sample_figure/sample_tablefigure}

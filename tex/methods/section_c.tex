@@ -2,21 +2,7 @@
 \label{sec:methods/section_c}
 
 Once we selected the parameters for YOLOv3 and SORT, we are ready to run the experiment for taking measurements. The experiment will involve two cases of taking measurements; running the object detector and tracker on the uncompressed video sequences and compressed sequences. For the case of compressed sequences, we apply HEVC video compression of version HM16.20 at different quantization parameter (QP) and motion search range (MSR). Table \ref{qp_msr_range} shows the range of QP and MSR attempted for the experiment.
-\begin{table}[]
-    \centering
-    \begin{tabular}{|c|c|}
-        \hline
-        HEVC parameter & Range of values \\
-        \hline
-        \hline
-        QP & [18, 22, 26, 30, 34, 38, 42, 46] \\
-        \hline
-        MSR & [8, 16, 32, 64] \\
-        \hline
-    \end{tabular}
-    \caption{Caption}
-    \label{tab:qp_msr_range}
-\end{table}
+\input{tex/tables/qp_msr_range}
 For the case of uncompressed sequences, we don't apply HEVC compression but run object detector and tracker directly on the sequences. The uncompressed sequences from Table \ref{tab:seq_list} were used but we excluded the training sequence of Class C PartyScene since we have used this sequence to tune the parameters to optimize the detector and tracker. Therefore, there are totally 12 sequences that were used for the analysis. Figure \ref{fig:experiment_pipeline} shows the pipeline for the experiment and each step is explained in the following steps.
 
 % \begin{myfont}

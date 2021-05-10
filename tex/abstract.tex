@@ -8,12 +8,7 @@
   \thispagestyle{plain}
   \setcounter{page}{\value{abstractpage}}
 
-  This is a very compelling thesis abstract.
-  It is important to write compelling thesis abstracts.
-  Readers usually like to read abstracts and figures.
-  So, it is important to write a good one.
-
-  Write some more here...
+Multiple object tracking problem is the identities association to the multiple objects, followed by the initialization of the state, in our case, the object detection. To achieve multiple object tracking, we employed detection-based tracking, which requires a detector to initialize the state before the identities association. We used YOLOv3 for object detection and SORT to perform identities association to the detected objects. Video compression is ubiquitous in most of the visual processing pipelines nowadays, and the relation between video compression and object tracking has not been studied in detail. Therefore, we studied the impact of video compression on object tracking performance. We collected the data by applying the video compression standard of HEVC to uncompressed sequences, varying quantization parameter (QP) and motion search range (MSR), and run the object tracker composed of YOLOv3 and SORT. We found that QP impact significantly on the tracking performance but not with MSR. Analyzing the results from compressed and uncompressed video sequences, we understood that most performance metrics decrease as QP increases and the image quality drops. Increase of MOTA and Precision were observed in some video sequences due to the certain type of objects that cause YOLOv3 to detect the wrong objects. We also found that occlusion makes a difference in IDs. IDs decreases in the video with frequent occlusions as QP increases while increases in the video with fewer occlusions.
 
   \setcounter{abstractpage}{\value{page}}
 \end{abstract}

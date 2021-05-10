@@ -1,10 +1,11 @@
-% https://tex.stackexchange.com/questions/63651/how-to-shrink-a-table-automatically-so-that-it-fits-onto-a-page
-
-
-\begin{table}%
+\begin{table}[!htbp]
   \centering
-  \subfloat[][]{
-  \resizebox{\linewidth}{!}{
+  \caption[Justification of SORT Optimization on “person” and “all” object classes.]
+  {Justification of SORT Optimization on “person” and “all” object classes.}
+
+  \begin{subtable}[t]{\linewidth}
+    \centering
+    \resizebox{1.0\linewidth}{!}{
     \begin{tabular}{rrrrrrrrrrrrrrrrrrr}
     \toprule
      max\_age &  min\_hits &  iou\_thres &  IDF1 &   IDP &   IDR &  Rcll &   Prcn &    F1 &  GT &  MT &  PT &  ML &  FP &  FN &  IDs &  FM &  MOTA &  MOTP \\
@@ -21,10 +22,13 @@
     \bottomrule
     \end{tabular}
     }
-  }%
-  \qquad
-  \subfloat[][]{
-    \resizebox{\linewidth}{!}{
+    \caption{Tuning parameters on "person" object class.}
+  \end{subtable}
+ 
+ 
+    \begin{subtable}[t]{\linewidth}
+    \centering
+    \resizebox{1.0\linewidth}{!}{
     \begin{tabular}{rrrrrrrrrrrrrrrrrrr}
     \toprule
      max\_age &  min\_hits &  iou\_thres &  IDF1 &   IDP &   IDR &  Rcll &  Prcn &    F1 &  GT &  MT &  PT &  ML &  FP &  FN &  IDs &  FM &  MOTA &  MOTP \\
@@ -41,7 +45,7 @@
     \bottomrule
     \end{tabular}
     }
-  }
-  \caption{Here are some tables in a \texttt{table} environment.}%
-  \label{tbl:table}%
+    \caption{Tuning parameters on "all" object class.}
+  \end{subtable}
+ \label{tab:optimizing_tracker_table}  
 \end{table}

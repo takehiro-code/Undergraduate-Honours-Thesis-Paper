@@ -11,12 +11,12 @@ For the image size parameter, any input image will be resized to this resolution
 
 For the confidence threshold and IOU threshold for NMS, I apply the grid search method to determine the suitable values. To tune these parameters, I run YOLOv3 and SORT on the selected training sequence of Class C PartyScene. Since both parameters range from 0 to 1, I run the detector with a step size of 0.05, and plot the detection performance $F1$ over different confidence threshold and IOU threshold as shown in Figure \ref{fig:optimizing_detector}.
 \input{tex/figures/optimizing_detector}
-The table and plot in this figure shows that there are optimal F1 score over different confidence and IOU threshold. The table in (a) shows that the detector achieved the same F1 score over different IOU threshold at confidence threshold of 0.25. Since the higher the IOU threshold we choose, it makes the detector more careful in detection, or in other words, we expect to see less FP and more FN. Therefore, we chose the confidence threshold of 0.25 and IOU threshold for NMS to be 0.55. Note that I also attempted on tuning the parameters based on optimizing mAP but this metric didn't give me insight in finding optimal values of parameters, as explained in Appendix.
+The table and plot in this figure shows that there are optimal F1 score over different confidence and IOU threshold. The table in (a) shows that the detector achieved the same F1 score over different IOU threshold at confidence threshold of 0.25. Since the higher the IOU threshold we choose, it makes the detector more careful in detection, or in other words, we expect to see less FP and more FN. Therefore, we chose the confidence threshold of 0.25 and IOU threshold for NMS to be 0.55.
 
 For optimizing the tracking performance of SORT, the following input parameters is listed \cite{bewley_simple_2016}.
 \begin{itemize}
     \item \textbf{Max age}: As T\textsubscript{lost} explained in Chapter \ref{sec:background/section_b}, the value of maximum age determines the maximum number of frames to be alive while no objects are detected before the trajectory termination.
-    \item \textbf{Min hits}: Minimum number of necessary detections before the trajectory creation and its assignment initialization.
+    \item \textbf{Min hits}: Minimum number of necessary detection before the trajectory creation and its assignment initialization.
     \item \textbf{IOU threshold}: Minimum IOU threshold for object matching. IOU less than this threshold indicates that the object doesn't overlap enough with the ground truth, so identity will not be assigned, but assignment takes place when IOU is higher than the threshold.
 \end{itemize}
 For the max age, I chose the value of 1 because \citeauthor{bewley_simple_2016} justified this value by the two reasons; the constant linear motion in Kalman filter framework does not cover the true dynamics where non-linear motion exists and SORT does not deal with the object re-identification \cite{bewley_simple_2016}. 
@@ -25,5 +25,5 @@ For the min hits and IOU threshold, I run SORT on the training sequence of Class
 \input{tex/figures/optimizing_tracker}
 For the IOU threshold selection, I chose 0.4 since both cases of tracking give the best MOTA score at IOU threshold up to 0.4 and the higher the IOU threshold gives the more careful in tracking design. For the min hits, I chose the value of 5 which is the middle between 2 and 9. 
 
-As we have selected the values of parameters based on MOTA; max age of 1, min hits of 5, and IOU threshold of 0.4, the further justification for other metrics is shown in the Appendix A. The selected values of parameters in YOLOv3 and SORT is summarized in Table \ref{tab:parameters}.
+As we have selected the values of parameters based on MOTA: max age of 1, min hits of 5, and IOU threshold of 0.4, the further justification for other metrics is shown in the Appendix \ref{sec:appendix/section_a}. The selected values of parameters in YOLOv3 and SORT is summarized in Table \ref{tab:parameters}.
 \input{tex/tables/parameters}
