@@ -1,7 +1,7 @@
 \section{Optimizing Object Tracking}
 \label{sec:methods/section_b}
 
-Object tracking pipeline consists of YOLOv3 and SORT, and using the softwares from \cite{jocher_ultralyticsyolov3_2021} and \cite{abewley_abewleysort_2021}, there are 6 parameters needed to be set to run the object tracking. In order to run these softwares, we have to set the suitable parameters, hence, I set the appropriate parameters by optimizing the detection performance for YOLOv3 and tracking performance for SORT. The following parameters needed to be set for YOLOv3 are as follows.
+Object tracking pipeline consists of YOLOv3 and SORT, and using the softwares from \cite{jocher_ultralyticsyolov3_2021} and \cite{abewley_abewleysort_2021}, there are 6 parameters needed to be set to run the object tracking. In order to run these softwares, we have to set the suitable parameters; hence, I set the appropriate parameters by optimizing the detection performance for YOLOv3 and tracking performance for SORT. The following parameters needed to be set for YOLOv3 are as follows.
 \begin{itemize}
     \item \textbf{Image size}: This parameter is the image resolution for inference of object detection in the YOLOv3 model.
     \item \textbf{Confidence threshold}: This parameter indicates the threshold of object detection. The higher the threshold, the object detector will less likely to detect the target but also less mistakes in detection.

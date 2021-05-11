@@ -1,20 +1,20 @@
 \section{Multiple Object Tracking Metrics}
 \label{sec:background/section_d}
 
-To evaluate the object detection and tracking performance, we need the metrics to quantify the performance with respect to the ground truth. Since there is no single metric that is consistent and agreed across the communities to assess the tracking performance, various metrics have been considered as listed below. The arrow symbol of $\uparrow$ indicates the higher the better while $\downarrow$ indicates the lower the worse. We have utilized existing implemention of metric calculation from \cite{heindl_cheindpy-motmetrics_2021}. 
+To evaluate the object detection and tracking performance, we need the metrics to quantify the performance with respect to the ground truth. Since there is no single metric that is consistent and agreed across the communities to assess the tracking performance, various metrics have been considered as listed below. The arrow symbol of $\uparrow$ indicates the higher, the better, while $\downarrow$ indicates the lower, the better. We utilized the software to evaluate the performance metrics from \cite{heindl_cheindpy-motmetrics_2021}. 
 
 \subsection{Detection Performance Measure}
-The following metrics of FP, FN, TP, Precision, Recall, and F1 measure the detection performance. FP and FN are based on the value of Intersection of Union value, which is defined as the area of intersection of detected bounding box and ground truth bounding box divided by union of those boxes. For example, if IOU threshold set 0.5 in the detector, and when we obtain the IOU value 0.8 at one target object, we count it as TP. If we obtain IOU value of 0.2, then we count it as FP.
+The following metrics of FP, FN, TP, Precision, Recall, and F1 measure the detection performance. FP and FN are based on the value of Intersection over Union (IOU) value, which is defined as the area of intersection of the detected bounding box and ground truth bounding box divided by the union of those boxes. For example, if we set the IOU threshold of 0.5 in the detector and obtain the IOU value of 0.8 at a target object, we count it as TP. If we obtain the IOU value of 0.2, we then count it as FP. The following definitions of detection performance measure are explained by \cite{ristani_performance_2016} \cite{milan_mot16_2016}.
 
 \begin{itemize}
 
 \item \textbf{TP ($\uparrow$)}: True Positive. A number of times the detector correctly detects a target. 
 
-\item \textbf{FP ($\downarrow$)}: False Positive. A number of times the detector falsely detects a target \cite{ristani_performance_2016}.
+\item \textbf{FP ($\downarrow$)}: False Positive. A number of times the detector falsely detects a target.
 
-\item \textbf{FN ($\downarrow$)}: False Negative. This metric is opposite of FP, i.e. a number of times the detector falsely not detecting a target \cite{ristani_performance_2016}.
+\item \textbf{FN ($\downarrow$)}: False Negative. This metric is the opposite of FP, i.e. a number of times the detector falsely not detecting a target.
 
-\item \textbf{Precision ($\uparrow$)}: A number of correct detections divided by a number of all detections made by the detector, which can be represented in equation as follows. This metric measures how well the object is localized by the detector. \cite{ristani_performance_2016} \cite{milan_mot16_2016}.
+\item \textbf{Precision ($\uparrow$)}: A number of correct detection divided by a number of all detection made by the detector.
 \begin{equation}
 Precision = \frac{TP}{TP + FP}
 \label{eqn:Precision}
@@ -38,7 +38,7 @@ F1 = 2\frac{TP \cdot FN}{TP + FN}
 
 
 \subsection{ID Measure}
-IDP, IDR, IDF1 measure the performance of the trajectories identifications. IDTP, IDFP, and IDFN are used in each definition of IDP, IDR, and IDF1.
+IDP, IDR, IDF1 measure the performance of the trajectories identifications. IDTP, IDFP, and IDFN are used in each definition of IDP, IDR, and IDF1. \citeauthor{ristani_performance_2016} listed the following definitions of ID performance measure \cite{ristani_performance_2016}.
 
 \begin{itemize}
 
@@ -48,13 +48,13 @@ IDP, IDR, IDF1 measure the performance of the trajectories identifications. IDTP
 
 \item \textbf{IDFN ($\downarrow$)}: The number of times the tracker incorrectly not identifies the truth trajectories.
 
-\item \textbf{IDP ($\uparrow$)}: Identification Precision. Similar to the definition of Precision, the number of correct identification is divided by the the number of all identifications.
+\item \textbf{IDP ($\uparrow$)}: Identification Precision. Similar to the definition of Precision, the number of correct identification is divided by the number of all identifications.
 \begin{equation}
 IDP = \frac{IDTP}{IDTP + IDFP}
 \label{eqn:IDP}
 \end{equation}
 
-\item \textbf{IDR ($\uparrow$)}: Identification Recall. The number of correct identification is divided by the the number of ground truth identifications.
+\item \textbf{IDR ($\uparrow$)}: Identification Recall. The number of correct identification is divided by the number of ground truth identifications.
 \begin{equation}
 IDR = \frac{IDTP}{IDTP + IDFN}
 \label{eqn:IDR}
@@ -66,23 +66,23 @@ IDF1 = 2 \cdot \frac{IDP \cdot IDR}{IDTP + IDFN}
 \label{eqn:IDF1}
 \end{equation}
 
-\item \textbf{IDs ($\downarrow$)}: Identity switches counts the number of times a different identity is assigned to a matched trajectory. This is also called mismatch. IDs is only counted when the newly assigned identity $\textit{i}$ on the trajectory matches with the ground truth trajectory with the identity $\textit{k}$, and the previously assigned trajectory with the identity $\textit{j}$ is not the same as $\textit{i}$.
+\item \textbf{IDs ($\downarrow$)}: Identity switch counts the number of times a different identity is assigned to a matched trajectory. This is also called a mismatch. IDs is only counted when the newly assigned identity $\textit{i}$ on the trajectory matches with the ground truth trajectory with the identity $\textit{k}$, and the previously assigned trajectory with the identity $\textit{j}$ is not the same as $\textit{i}$ \cite{milan_mot16_2016}. This metric is also denoted as IDSW in the literature.
 \end{itemize}
 
 
 
 \subsection{Track Quality Measure}
-MT, PT, ML, and FM measures the track quality. Note that these metrics don't account for ID measure, so ID doesn't have to be the same on the trajectory.
+MT, PT, ML, and FM measures the track quality. Note that these metrics do not account for ID measure, so ID does not have to be the same on the trajectory. The following definitions of track quality measure are explained by \cite{milan_mot16_2016}.
 
 \begin{itemize}
 
 \item \textbf{GT}: It counts a number of ground truth trajectories.
 
-\item \textbf{MT ($\uparrow$)}: Mostly Tracked. It counts the number of trajectories, where each trajectory is being tracked at least 80\% of the time respect to the entire time of ground truth trajectory.
+\item \textbf{MT ($\uparrow$)}: Mostly Tracked. It counts the number of trajectories, where each trajectory is being tracked at least 80\% of the time with respect to the entire time of ground truth trajectory.
 
-\item \textbf{PL ($\downarrow$)}: Partially Tracked. It counts the number of trajectories, where each trajectory is being tracked at least 20\% of the time but less than 80\% respect to the entire time of ground truth trajectory.
+\item \textbf{PL ($\downarrow$)}: Partially Tracked. It counts the number of trajectories, where each trajectory is being tracked at least 20\% of the time but less than 80\% with respect to the entire time of ground truth trajectory.
 
-\item \textbf{ML ($\downarrow$)}: Mostly Loss. It counts the number of trajectories, where each trajectory is being tracked less than 20\% of the time respect to the entire time of ground truth trajectory.
+\item \textbf{ML ($\downarrow$)}: Mostly Loss. It counts the number of trajectories, where each trajectory is being tracked less than 20\% of the time with respect to the entire time of ground truth trajectory.
 
 \item \textbf{FM ($\downarrow$)}: Fragmentations counts the number of times the trajectories being tracked to untracked.
 \end{itemize}
@@ -90,24 +90,23 @@ MT, PT, ML, and FM measures the track quality. Note that these metrics don't acc
 
 
 \subsection{CLEAR MOT Metrics}
-According to \cite{bernardin_evaluating_2008}, classification of
-events, activities, and relationships (CLEAR) evaluations introduced two metrics of MOTA and MOTP in 2008.
-Although there is no single metric that is able to assess the tracking performance, MOTA and MOTP emphasize on more general and overall performance of the tracker. Especially, MOTA is considered the most popular metric to assess the overall tracking performance \cite{milan_mot16_2016} and according to \cite{leal-taixe_tracking_2017}, MOTA is the best measure that aligns with the human visual system.
+According to \cite{bernardin_evaluating_2008}, classification of events, activities, and relationships (CLEAR) evaluations introduced two metrics of MOTA and MOTP in 2008.
+Although there is no single metric that is able to assess the tracking performance, MOTA and MOTP emphasize the more general and overall performance of the tracker. Especially, MOTA is considered the most popular metric to assess the overall tracking performance \cite{milan_mot16_2016} and according to \cite{leal-taixe_tracking_2017}, MOTA is the best measure that aligns with the human visual system.
 
 \begin{itemize}
-\item \textbf{MOTA ($\uparrow$)}: Multiple Object Tracking Accuracy. MOTA is a metric that combines three other metrics; FN, FP, and IDs. It scores the overall tracking performance in the context of MOT and the value could range $\left( \infty, 100 \right]$. The score becomes negative when the overall error counts exceeds the total ground truth trajectories.
+\item \textbf{MOTA ($\uparrow$)}: Multiple Object Tracking Accuracy. MOTA is a metric that combines three other metrics: FN, FP, and IDs. It scores the overall tracking performance in the context of MOT and the value could range $\left( \infty, 100 \right]$. The score becomes negative when the overall error count exceeds the total ground truth trajectories.
 \begin{equation}
 MOTA = 1 - \frac{\sum_{t} (FN_{t} + FP_{t} + IDs_{t})}{\sum_{t}GT_{t}}
 \label{eqn:MOTA}
 \end{equation}
 where t is the frame index.
 
-\item \textbf{MOTP ($\uparrow$ in \%)}: Multiple Object Tracking Precision. The numerator shows the total overlap of all target bounding boxes with respect to the ground truth bounding boxes for all the frames while the denominator indicates the total number of matches for all the frames. This measure quantifies how well the objects are localized by the detector in the context of MOT but it does not give a good indication of the overall performance.
+\item \textbf{MOTP ($\uparrow$ in \%)}: Multiple Object Tracking Precision. The numerator shows the total overlap of all target bounding boxes with respect to the ground truth bounding boxes for all the frames, and the denominator indicates the total number of matches for all the frames. This measure quantifies how well the objects are localized by the detector in MOT, but it does not give a good indication of overall tracking performance.
 \begin{equation} 
 MOTP = \frac{\sum_{t,i} d_{t,i}}{\sum_{t}c_{t}}
 \label{eqn:MOTP}
 \end{equation}
-where $d_{t,i}$ shows how much a target bounding box overlaps with the ground truth bounding box at target i at a frame index t while $c_{t}$ denotes the matched objects with the correct ID at a frame index t. We report this score in a percentage rather than the value based on the original definition, the following conversion has been made.
+where $d_{t,i}$ shows how much a target bounding box overlaps with the ground truth bounding box at target i at a frame index t while $c_{t}$ denotes the matched objects with the correct ID at a frame index t. We report this score in a percentage rather than the value based on the original definition; the following conversion has been made.
 \begin{equation} 
 MOTP (\%) = (1 - MOTP) \cdot 100
 \label{eqn:MOTP_percentage}
