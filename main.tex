@@ -1,6 +1,10 @@
 \documentclass[]{sfuthesis}
 %\documentclass{article}
-\usepackage[numbers]{natbib}
+
+% citation libraries
+% \usepackage[numbers]{natbib} % problem with max names
+\usepackage[natbib, maxcitenames=1, mincitenames=1, style=ieee]{biblatex}
+
 \usepackage{mathastext}
 \usepackage{caption}
 \usepackage{float}
@@ -12,12 +16,13 @@
 
 
 
+
 \input{tex/preamble}
 \tikzexternalize[prefix=out/, optimize command away=\includepdf]
 
 \title{Impact of Video Compression on Object Tracking Performance}
 \author{Takehiro Tanaka}
-\date{April 9, 2021}
+\date{June XX, 2021}
 
 \thesistype{Thesis}
 \previousdegrees{}
@@ -26,18 +31,18 @@
 \department{School of Engineering Science}
 \faculty{Faculty of Applied Sciences}
 \copyrightyear{2021}
-\semester{Spring 2021}
+\semester{Summer 2021}
 
 \keywords{%
-  deep learning;
-  collaborative intelligence;
-  inference%
+  multiple object tracking;
+  video compression;
+  %
 }
 
 \committee{%
   \chair{Dr. Ivan V. Baji\'c, P.Eng.}{Academic Supervisor \\ Professor}
-  \member{Dr. Mirza Faisal Beg, P.Eng.}{Committee \\ Professor}
-  \member{Dr. Jie Liang, P.Eng.}{Committee \\ Professor}
+  \member{Dr. Jie Liang, P.Eng.}{Technical Supervisor \\ Professor}
+  \member{Dr. Mirza Faisal Beg, P.Eng.}{Committee Member \\ Professor}
 }
 
 \addbibresource{references.bib}
@@ -58,7 +63,9 @@
 \phantomsection
 \pdfbookmark{\contentsname}{toc}
 \tableofcontents
+\clearpage
 \listoffigures
+\clearpage
 \listoftables
 
 \clearpage
