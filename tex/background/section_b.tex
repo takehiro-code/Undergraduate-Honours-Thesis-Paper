@@ -1,11 +1,95 @@
 \section{Simple Online Realtime Tracking (SORT)}
 \label{sec:background/section_b}
 
-The detection-based tracking requires an object detector to initialize the state by detecting the objects, and a tracking component will be required. Multiple object tracking problem can be viewed as a data association problem in assigning the optimal unique identity to each object. Simple Online Realtime Tracking (SORT) was considered for the tracking component, which is detection-based and online tracker with a deterministic output. As \citeauthor{bewley_simple_2016} describes \cite{bewley_simple_2016}, based on the detected objects, SORT utilizes the constant linear motion model to estimate the displacements of the objects across the frames. The model can be represented in the following equation,
+The detection-based tracking requires an object detector to initialize the tracker's state by detecting the objects, then a tracking component will track those objects. Multiple object tracking problem can be viewed as a data association problem in assigning the optimal unique identity to each object. Simple Online Realtime Tracking (SORT) was selected for the tracking component, which is a detection-based online tracker with a deterministic output. As \citeauthor{bewley_simple_2016} describe \cite{bewley_simple_2016}, based on the detected objects, SORT utilizes the constant linear motion model to estimate the displacements of the objects across the frames. The tracker's state at time $k$ can be represented as a state vector:
 \begin{equation}
-\textbf{x} = [u, v, s, r, \dot{u}, \dot{v}, \dot{s}]^T,
-\label{eq:SORT_model}
+\mathbf{x}_{k} = [u, v, s, r, \dot{u}, \dot{v}, \dot{s}]^\mathsf{T}~,
+\label{eqn:state_vector}
 \end{equation}
-where $u$ and $v$ are the pixel coordinates in the horizontal and vertical direction; $s$ and $r$ are the area and aspect ratio of the bounding box; $\dot{u}$ and $\dot{v}$ represent the velocity; $\dot{s}$ is the rate of change of the area, which can be solved optimally by the Kalman filter framework. As for the data association, the assignment cost matrix, consisting of IOU values between each detected object, can be computed. The assignments of unique identities can be solved optimally from this matrix via the Hungarian algorithm. When the detected objects overlap less than the minimum IOU value, untracked objects are found, and followed by the minimum number of detections, the trajectories with the unique identities are initialized. During the initialization, the velocities are set to 0. When the objects are not detected for a certain number of frames labeled as $T\textsubscript{Lost}$, then the trajectories are terminated.
+where $u$ and $v$ are the pixel coordinates in the horizontal and vertical direction; $s$ and $r$ are the area and aspect ratio of the bounding box; $\dot{u}$ and $\dot{v}$ represent the velocity; $\dot{s}$ is the rate of change of the area. The aspect ratio $r$ is assumed to be constant, and hence the state vector does not include $\dot{r}$. SORT utilizes the Kalman filter \cite{kalman_new_1960}, which is the original publication by \citeauthor{kalman_new_1960}, to estimate the state vector optimally. The use of Kalman filter in the multiple object tracking is explained well by \cite{li_multiple_2010} and adapted from this explanation, we described the framework as following. Also, we adapted the following equations according to the source code of SORT \cite{abewley_abewleysort_2021} and the libary source code of the Kalman filter \cite{labbe_rlabbefilterpy_2021}.
 
-SORT has been focused on simplicity of design, which could serve as a baseline method. This is because the design of SORT is essentially consisting of a Kalman filter framework for predicting motion and a Hungarian algorithm for data association; however, it does not deal with the long-term occlusion. Adding the object re-identification feature to deal with occlusion will weigh significant complexities on the tracker. SORT is simple yet fast and maintains high accuracy with deterministic output. Combined with a fast YOLOv3 object detector and SORT, it will be easy for us to run the experiment since both components are fast enough and produces the same result every time we run the same experiment.
+Kalman filter framework can be implemented recursively to estimate the object's state in the next frame based on the previous state as well as its error. Recall that we utilizes YOLOv3 for object detection, so the measurements, detected bounding boxes in our case, are taken at every frame. The measurement vector can be represented as
+\begin{equation}
+\mathbf{z}_{k} = [u, v, s, r]^\mathsf{T}
+\label{eqn:measurement_vector}
+\end{equation}
+The Kalman filter framework allows us to estimate the apriori state vector $\mathbf{\hat{x}}^-$ and apriori covariance matrix $\mathbf{P}^-$ at time $k$ based on the previous state and covariance at time $k-1$.
+\begin{equation}
+\mathbf{\hat{x}}_{k}^{-} = \mathbf{A} \mathbf{\hat{x}}_{k-1} ~ ,
+\label{eqn:state_apriori_update}
+\end{equation}
+\begin{equation}
+\mathbf{P}_{k}^- = \mathbf{A}\mathbf{P}_{k-1}\mathbf{A}^\mathsf{T}+\mathbf{Q}
+\label{eqn:error_apriori_update}
+\end{equation}
+$\mathbf{A}$ is a transition matrix represented as
+\begin{equation}
+\mathbf{A} = \left[ \begin{matrix} 1 & 0 & 0 & 0 & 1 & 0 & 0 \\ 0 & 1 & 0 & 0 & 0 & 1 & 0 \\ 0 & 0 & 1 & 0 & 0 & 0 & 1 \\ 0 & 0 & 0 & 1 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 0 & 0 & 0 & 1 \end{matrix} \right]
+\label{eqn:transition_matrix}
+\end{equation}
+The measurement vector at time $k$ can be obtained from the state vector $\mathbf{x}_k$ as
+\begin{equation}
+\mathbf{z}_{k} = \mathbf{H} \mathbf{x}_{k} ~ ,
+\label{eqn:measurement_eqn}
+\end{equation}
+where $\mathbf{H}$ is a measurement matrix represented as
+\begin{equation}
+\mathbf{H} = \left[ \begin{matrix} 1 & 0 & 0 & 0 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 & 0 & 0 & 0 \\ 0 & 0 & 1 & 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 1 & 0 & 0 & 0 \end{matrix} \right]
+\label{eqn:measurement_matrix}
+\end{equation}
+Given the apriori estimates from the equation \ref{eqn:state_apriori_update}, \ref{eqn:error_apriori_update} and the estimated measurement $\mathbf{H} \mathbf{\hat{x}}_{k}^-$, Kalman filter framework corrects the apriori estimates, updating them to have aposteriori estimates using the current measurement $\mathbf{z}_k$. The equations for the aposteriori estimates will be
+\begin{equation}
+\mathbf{K}_{k} = \mathbf{P}_{k}^{-} \mathbf{H}^\mathsf{T} (\mathbf{H} \mathbf{P}_{k}^{-} \mathbf{H}^\mathsf{T} + \mathbf{R} )^{-1} ~ ,
+\label{eqn:Kalman_gain_update}
+\end{equation}
+\begin{equation}
+\mathbf{\hat{x}}_{k} = \mathbf{\hat{x}}_{k}^- + \mathbf{K}_{k} (\mathbf{z}_k - \mathbf{H} \mathbf{\hat{x}}_{k}^-) ~ ,
+\label{eqn:state_aposteriori_estimate}
+\end{equation}
+\begin{equation}
+\mathbf{P}_k = (1 - \mathbf{K}_k \mathbf{H} ) \mathbf{\hat{P}}_k^- ~ ,
+\label{eqn:error_aposteriori_estimate}
+\end{equation}
+where $\mathbf{K}_{k}$ is the Kalman gain at time $k$. The Kalman gain $\mathbf{K}_k$, the aposteriori estimate of state vector $\mathbf{x}_k$, and the aposteriori estimate of error covariance matrix $\mathbf{P}_k$ are recursively updated by the estimated apriori state vector $\mathbf{\hat{x}}_{k}^{-}$ and apriori error covariance matrix $\mathbf{P}_{k}^{-}$. Therefore, the Kalman filter framework essentially consists of the prediction steps that will estimate the bounding boxes as apriori estimates and the correction steps that will correct the predicted information as aposteriori estimates, and the process will be recursively back to the prediction steps to proceed with the next frame. For the initial conditions, when the object is detected, the velocity components are set to 0 for the state vector $\mathbf{x}_0$.
+\begin{equation}
+\mathbf{x}_{0} = [u, v, s, r, 0, 0, 0]^\mathsf{T}
+\label{eqn:x_0}
+\end{equation}
+For the covariance matrix $\mathbf{P}_0$, the velocity components are set to large variance values as $10^4$ since no velocity is observed at the initial state.
+\begin{equation}
+\mathbf{P}_0 = \left[ \begin{matrix}   
+  10  &  0  &  0  &  0  &  0  &  0  &  0 \\
+  0  &  10  &  0  &  0  &  0  &  0  &  0 \\
+  0  &  0  &  10  &  0  &  0  &  0  &  0 \\
+  0  &  0  &  0  &  10  &  0  &  0  &  0 \\
+  0  &  0  &  0  &  0  &  10^4  &  0  &  0 \\
+  0  &  0  &  0  &  0  &  0  &  10^4  &  0 \\
+  0  &  0  &  0  &  0  &  0  &  0  &  10^4 
+  \end{matrix} \right]
+\label{eqn:P_0}
+\end{equation}
+For the process noise covariance $\mathbf{Q}$ and the measurement noise covariance $\mathbf{R}$, constant values are assigned.
+\begin{equation}
+\mathbf{Q} = \left[ \begin{matrix} 
+1 & 0 & 0 & 0 & 0 & 0 & 0 \\ 
+0 & 1 & 0 & 0 & 0 & 0 & 0 \\ 
+0 & 0 & 1 & 0 & 0 & 0 & 0 \\ 
+0 & 0 & 0 & 1 & 0 & 0 & 0 \\ 
+0 & 0 & 0 & 0 & 10^{-2} & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 10^{-2} & 0 \\ 
+0 & 0 & 0 & 0 & 0 & 0 & 10^{-4} \end{matrix} \right]
+\label{eqn:P_0}
+\end{equation}
+\begin{equation}
+\mathbf{R} = \left[ \begin{matrix}   
+  1  &  0  &  0  &  0 \\
+  0  &  1  &  0  &  0 \\
+  0  &  0  &  10 &  0 \\
+  0  &  0  &  0  &  10 \end{matrix} \right]
+\label{eqn:R}
+\end{equation}
+These initial conditions and noise matrices used the default values by \cite{bewley_simple_2016}.
+
+As for the data association, the assignment cost matrix, consisting of IOU values between each measured bounding box and predicted box by the Kalman filter, can be computed. The assignments of unique identities on a current frame can be solved optimally from this matrix via the Hungarian algorithm \cite{kuhn_hungarian_1955}. When the measured object overlaps less than the minimum IOU threshold value with the predicted bounding box, the assignment for the measured bounding box will be rejected. For the trajectories initialization, however, the untracked objects are found when the detected objects overlap less than the minimum IOU threshold with the predicted bounding boxes. Followed by the minimum number of detections, the trajectories with the unique identities are initialized. When the objects are not detected for a certain number of frames labeled as $T\textsubscript{Lost}$, the trajectories are terminated.
+
+SORT is focused on simplicity of design, which could serve as a baseline tracking method. This is because SORT essentially consists of a Kalman filter framework for predicting motion and a Hungarian algorithm for data association. However, it does not deal with long-term occlusions. Adding the object re-identification feature to deal with occlusions will weigh significant complexities on the tracker. SORT is simple yet fast, and maintains high accuracy with deterministic output. Combined with a fast YOLOv3 object detector, SORT will make it easy for us to run the experiments since both components are fast enough and produce deterministic results.
