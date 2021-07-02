@@ -5,7 +5,7 @@ Object detection is a computer vision task to recognize the object instances fro
 
 Video compression is ubiquitous in most visual processing pipelines. Compression of video is necessary because it would be impractical to transmit it or save it in a storage device without compression. For example, $1920\times1080$ pixels of full-color 90 min video with 30 frames per second (FPS) takes 1007.8 GB uncompressed, as calculated below:
 \begin{equation}
-    1920 \times 1080~px \cdot 3~\frac{B}{px} \cdot 30~\frac{frame}{sec} \cdot 60~\frac{sec}{min} \cdot 90~min \cdot 10^{-9}~\frac{GB}{B}  = 1007.8~GB~,
+    1920 \times 1080~\text{px} \cdot 3~\frac{\text{B}}{\text{px}} \cdot 30~\frac{\text{frame}}{\text{sec}} \cdot 60~\frac{\text{sec}}{\text{min}} \cdot 90~\text{min} \cdot 10^{-9}~\frac{\text{GB}}{\text{B}}  = 1007.8~\text{GB}~,
 \end{equation}
 where px is pixel and B is byte. However, the size 1007.8 GB is too large to transmit. Since video compression is ubiquitous, any video we access is pre-compressed, and this raises the question of how much video compression impacts the object tracking performance. To our knowledge, the effect of video compression on object tracking has not been studied in detail. Hence, this project aims to analyze the effect of video compression on object tracking performance by assessing the various metrics used for multiple object tracking.
 

@@ -1,9 +1,9 @@
 \section{Experiment Pipeline}
 \label{sec:methods/section_c}
 
-Once we selected the parameters for YOLOv3 and SORT, we will run the experiment for taking measurements. The experiment will involve two cases of taking measurements; running the object detector and tracker on the uncompressed and compressed video sequences. For the case of compressed sequences, we apply HEVC video compression of version HM16.20 at different quantization parameter (QP) and motion search range (MSR). Table \ref{tab:qp_msr_range} shows the range of QP and MSR attempted for the experiment.
+Once we selected the parameters for YOLOv3 and SORT, we will run the tracking experiment to assess tracking accuracy. The experiment will involve running the object detector and tracker on the uncompressed and compressed video sequences. For the case of compressed sequences, we apply HEVC video compression (HM16.20) at different quantization parameter (QP) and motion search range (MSR) values. Table \ref{tab:qp_msr_range} shows the range of QP and MSR chosen for the experiment.
 \input{tex/tables/qp_msr_range}
-For the case of uncompressed sequences, we do not apply HEVC compression but run the object detector and tracker directly on the sequences. The uncompressed sequences from Table \ref{tab:seq_list} were used, but we excluded the training sequence of Class C PartyScene since we have used this to tune the parameters to optimize the detector and tracker. Therefore, there are a total of 12 sequences that were used for the analysis. Figure \ref{fig:experiment_pipeline} shows the pipeline for the experiment, and each step is explained as follows.
+For the case of uncompressed sequences, we do not apply HEVC compression but run the object detector and tracker directly on the sequences. The uncompressed sequences from Table \ref{tab:seq_list} were used, but we excluded the training sequence of PartyScene since we have used this sequence to tune the parameters of the detector and tracker. Therefore, there are a total of 12 sequences in the experiments. Figure \ref{fig:experiment_pipeline} shows the pipeline for the experiment, and each step is explained as follows.
 
 % \begin{myfont}
 % \centering
@@ -13,10 +13,10 @@ For the case of uncompressed sequences, we do not apply HEVC compression but run
 
 \begin{enumerate}
     \item \textbf{HEVC Encoding}: The experiment starts with applying HEVC encoding to the uncompressed sequences and generating the compressed bitstreams. Low Delay Encoding is used for encoding. Encoding is the process that took the most amount of time in the entire pipeline, so we encoded all the possible combinations of QP and MSR and saved all the compressed bitstreams before applying the decoder.
-    \item \textbf{HEVC Decoding}: After obtaining all the compressed bitstreams, we apply the HEVC decoder to the bitstreams and output the decoded sequences in YUV420 format.
-    \item \textbf{YUV420 to RGB24 color conversion}: Since the YOLOv3 object detector accepts in RGB24 format, we convert the decoded sequences in YUV420 to RGB24 format in .png files.
-    \item \textbf{Running YOLOv3 and SORT}: Once obtaining the decoded sequence in RGB24, we run the object detector and tracker to obtain the tracking results in MOT benchmark format. 
-    \item \textbf{MOT metrics evaluation}: To assess the tracking performance, we input both the tracking results and ground truth, and the software \cite{heindl_cheindpy-motmetrics_2021} will generate the tracking performance result.
+    \item \textbf{HEVC Decoding}: After obtaining all the compressed bitstreams, we apply the HEVC decoder to the bitstreams and output the decoded sequences in the YUV420 format.
+    \item \textbf{YUV420 to RGB24 color conversion}: Since the YOLOv3 object detector accepts in the RGB24 format, we convert the decoded sequences from YUV420 to RGB24 format and save frames in PNG files.
+    \item \textbf{Running YOLOv3 and SORT}: Once the decoded sequence are stored in RGB24, we run the object detector and tracker to obtain the tracking results in MOT benchmark format. 
+    \item \textbf{MOT metrics evaluation}: To assess the tracking performance, we input both the tracking results and ground truth, and the software \cite{heindl_cheindpy-motmetrics_2021} will generate the tracking performance results.
 \end{enumerate}
-We ran YOLOv3 and SORT to detect and track each class ID shown in Table \ref{tab:seq_list} as a single class tracking and also detect and track the "all" object classes. In other words, we took measurements from a single class multiple object tracking and multiple classes multiple objects tracking.
+We ran YOLOv3 and SORT to detect and track each class ID shown in Table \ref{tab:seq_list} as single-class tracking, and also detect and track the "all" object classes. In other words, we took measurements from single-class object tracking and multi-class multiple objects tracking.
 \input{tex/figures/experimental_pipeline}
