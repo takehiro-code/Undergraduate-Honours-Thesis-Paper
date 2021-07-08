@@ -6,7 +6,7 @@ The detection-based tracking requires an object detector to initialize the track
 \mathbf{x}_{k} = [u, v, s, r, \dot{u}, \dot{v}, \dot{s}]^\mathsf{T}~,
 \label{eqn:state_vector}
 \end{equation}
-where $u$ and $v$ are the pixel coordinates in the horizontal and vertical direction; $s$ and $r$ are the area and aspect ratio of the bounding box; $\dot{u}$ and $\dot{v}$ represent the velocity; $\dot{s}$ is the rate of change of the area. The aspect ratio $r$ is assumed to be constant, and hence the state vector does not include $\dot{r}$. SORT utilizes the Kalman filter \cite{kalman_new_1960}, which is the original publication by \citeauthor{kalman_new_1960}, to estimate the state vector optimally. The use of Kalman filter in the multiple object tracking is explained well by \cite{li_multiple_2010} and adapted from this explanation, we described the framework as following. Also, we adapted the following equations according to the source code of SORT \cite{abewley_abewleysort_2021} and the libary source code of the Kalman filter \cite{labbe_rlabbefilterpy_2021}.
+where $u$ and $v$ are the pixel coordinates in the horizontal and vertical direction; $s$ and $r$ are the area and aspect ratio of the bounding box; $\dot{u}$ and $\dot{v}$ represent the velocity; $\dot{s}$ is the rate of change of the area. The aspect ratio $r$ is assumed to be constant, and hence the state vector does not include $\dot{r}$. SORT utilizes the Kalman filter \cite{kalman_new_1960} (the original publication by \citeauthor{kalman_new_1960}) to estimate the state vector optimally. The use of Kalman filter in the multiple object tracking is explained well by \cite{li_multiple_2010} and adapted from this explanation, we described the framework as following. Also, we adapted the following equations according to the source code of SORT \cite{abewley_abewleysort_2021} and the library source code of the Kalman filter \cite{labbe_rlabbefilterpy_2021}.
 
 Kalman filter framework can be implemented recursively to estimate the object's state in the next frame based on the previous state as well as its error. Recall that we utilizes YOLOv3 for object detection, so the measurements, detected bounding boxes in our case, are taken at every frame. The measurement vector can be represented as
 \begin{equation}
@@ -37,7 +37,7 @@ where $\mathbf{H}$ is a measurement matrix represented as
 \mathbf{H} = \left[ \begin{matrix} 1 & 0 & 0 & 0 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 & 0 & 0 & 0 \\ 0 & 0 & 1 & 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 1 & 0 & 0 & 0 \end{matrix} \right]
 \label{eqn:measurement_matrix}
 \end{equation}
-Given the apriori estimates from the equation \ref{eqn:state_apriori_update}, \ref{eqn:error_apriori_update} and the estimated measurement $\mathbf{H} \mathbf{\hat{x}}_{k}^-$, Kalman filter framework corrects the apriori estimates, updating them to have aposteriori estimates using the current measurement $\mathbf{z}_k$. The equations for the aposteriori estimates will be
+Given the apriori estimates from Equation \eqref{eqn:state_apriori_update}, \eqref{eqn:error_apriori_update} and the estimated measurement $\mathbf{H} \mathbf{\hat{x}}_{k}^-$, Kalman filter framework corrects the apriori estimates, updating them to have aposteriori estimates using the current measurement $\mathbf{z}_k$. The equations for the aposteriori estimates will be
 \begin{equation}
 \mathbf{K}_{k} = \mathbf{P}_{k}^{-} \mathbf{H}^\mathsf{T} (\mathbf{H} \mathbf{P}_{k}^{-} \mathbf{H}^\mathsf{T} + \mathbf{R} )^{-1} ~ ,
 \label{eqn:Kalman_gain_update}

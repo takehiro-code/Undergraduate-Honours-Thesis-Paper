@@ -1,0 +1,29 @@
+% \begin{figure}[!tb]
+%   \centering
+%   \includegraphics[width=1.0\linewidth]{img/MOTA_transformation.pdf}
+%   \caption[Scatter plots before and after the MOTA transformation]
+%   {Scatter plots before and after the MOTA transformation.}
+%   \label{fig:MOTA_transformation}
+% \end{figure}
+
+% spacing between subfigures will not align the sub figures horizontanlly
+
+\begin{figure}[!tb]
+  \centering
+  \begin{subfigure}{.5\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{img/MOTA_transformation_before.pdf}
+    \caption{MOTA vs $\text{QP}'$ scatter plot}
+    \label{fig:MOTA_transformation_before}
+  \end{subfigure}%
+  \begin{subfigure}{.5\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{img/MOTA_transformation_after.pdf}
+    \caption{$\text{MOTA}'$ vs $\text{QP}'$ scatter plot }
+    \label{fig:MOTA_transformation_after}
+  \end{subfigure}
+  \caption[Scatter plots before and after the MOTA transformation on all the video sequences]{%
+    Scatter plots before and after the MOTA transformation across all the video sequences.%
+  }
+  \label{fig:MOTA_transformation}
+\end{figure}

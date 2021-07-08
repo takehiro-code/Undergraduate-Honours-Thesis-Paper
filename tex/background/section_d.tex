@@ -32,7 +32,7 @@ The following metrics of TP, FP, FN, Precision, Recall, F1, and mAP-50 measure t
 \label{eqn:F1}
 \end{equation}
 
-\item \textbf{mAP-50 ($\uparrow$)}: Mean Average Precision (mAP) is the metric that assesses the detection performance and is the most popular metric used in the benchmarks \cite{padilla_comparative_2021}. mAP is the mean of Average Precision (AP) value for each object class. We adopted the mAP metric that evaluates the detection performance at IOU threshold of 0.5. We call it as mAP-50. mAP evaluated at IOU threshold of 0.5 is the metric based on the PASCAL VOC challenge \cite{everingham_pascal_2015}. What mAP-50 differs from the metric F1 is that it evaluates the detection performance at multiple confidence thresholds from the detector while F1 evaluates only at one specific confidence threshold. With the given confidence threshold, the detector will only detect the objects with the object class probability greater than the threshold. To quantify the detection performance that accounts for different confidence thresholds, we would like to calculate the integration of Precision and Recall over different confidence thresholds, which will be the area under the curve of $\text{Precision}(s) \times \text{Recall}(s)$. This area under the curve will be the AP value. Note that Precision and Recall are now subject to the different confidence threshold $s$. However, the curve is oftern zig-zag, so the interpolation of Precision at different Recall will be necessary. By doing the interpolation, AP can be obtained via Riemann sums as following equations adapted from \cite{padilla_survey_2020} \cite{padilla_comparative_2021}. 
+\item \textbf{mAP-50 ($\uparrow$)}: Mean Average Precision (mAP) is the metric that assesses the detection performance and is the most popular metric used in the benchmarks \cite{padilla_comparative_2021}. mAP is the mean of Average Precision (AP) value for each object class. We adopted the mAP metric that evaluates the detection performance at IOU threshold of 0.5. We call it as mAP-50. mAP evaluated at IOU threshold of 0.5 is the metric based on the PASCAL VOC challenge \cite{everingham_pascal_2015}. What mAP-50 differs from the metric F1 is that it evaluates the detection performance at multiple confidence thresholds from the detector while F1 evaluates only at one specific confidence threshold. With the given confidence threshold, the detector will only detect the objects with the object class probability greater than the threshold. To quantify the detection performance that accounts for different confidence thresholds, we would like to calculate the integration of Precision and Recall over different confidence thresholds, which will be the area under the curve of $\text{Precision}(s) \times \text{Recall}(s)$. This area under the curve will be the AP value. Note that Precision and Recall are now subject to the different confidence threshold $s$. However, the curve is often zig-zag, so the interpolation of Precision at different Recall will be necessary. By doing the interpolation, AP can be obtained via Riemann sums as following equations adapted from \cite{padilla_survey_2020} \cite{padilla_comparative_2021}. 
 \begin{equation}
 \text{AP} = \sum_{n} \left( R_{n+1} - R_{n} \right) P_{\text{interp}} \left( R_{n+1}) \right)
 \label{eqn:AP}
@@ -53,7 +53,7 @@ where $C$ is the number of object classes and $\left( \text{AP-50} \right)_i$ is
 
 
 \subsection{ID Measure}
-IDP, IDR, IDF1 are measures of the tracker's ability to identify object trajectories. IDTP, IDFP, and IDFN are used in the definitions of IDP, IDR, and IDF1. \citeauthor{ristani_performance_2016} listed the following definitions of ID performance measures \cite{ristani_performance_2016}.
+IDP, IDR, IDF1 are measures of the tracker's ability to identify object trajectories. IDTP, IDFP, and IDFN are used in the definitions of IDP, IDR, and IDF1. \citeauthor{ristani_performance_2016} \cite{ristani_performance_2016} listed the following definitions of ID performance measures.
 
 \begin{itemize}
 
@@ -87,7 +87,7 @@ IDP, IDR, IDF1 are measures of the tracker's ability to identify object trajecto
 
 
 \subsection{Track Quality Measure}
-MT, PT, ML, and FM are metrics that measure the track quality. Note that these metrics do not account for IDs, so ID does not have to be the same on the trajectory. The following definitions of track quality metrics are explained by \cite{milan_mot16_2016}.
+MT, PT, ML, and FM are metrics that measure the track quality. Note that these metrics do not account for ID assignments, so ID does not have to be the same on the trajectory. The following definitions of track quality metrics are explained by \cite{milan_mot16_2016}.
 
 \begin{itemize}
 
@@ -121,7 +121,7 @@ where $t$ is the frame index.
 \text{MOTP} = \frac{\sum_{t,i} d_{t,i}}{\sum_{t}c_{t}}
 \label{eqn:MOTP}
 \end{equation}
-where $d_{t,i}$ shows how much a target bounding box overlaps with the ground truth bounding box at target i at a frame index t while $c_{t}$ denotes the matched objects with the correct ID at a frame index t. We report this score as a percentage rather than the value based on the original definition; the following conversion is made.
+where $d_{t,i}$ shows how much a target bounding box overlaps with the ground truth bounding box at target $i$ at a frame index $t$ while $c_{t}$ denotes the matched objects with the correct ID at a frame index $t$. We report this score as a percentage rather than the value based on the original definition; the following conversion is made.
 \begin{equation} 
 \text{MOTP} (\%) = (1 - \text{MOTP}) \cdot 100
 \label{eqn:MOTP_percentage}
