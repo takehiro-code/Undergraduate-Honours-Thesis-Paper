@@ -19,13 +19,13 @@
          \hline
           C & PartyScene & 500 & 832x480 & [0, 41, 58, 74, 77] & 50 & 8 \\
          \hline
-          C & RaceHorses & 300 & 832x480 & [0, 17] & 30 & 8 \\
+          C & RaceHorsesC \tablefootnote{\label{footnote:RaceHorses_name} The source \cite{choi_vcm_2020} uses the same sequence name "RaceHorses" for Class C and Class D, but we call it as "RaceHorsesC" and "RaceHorsesD" respectively to distinguish.} & 300 & 832x480 & [0, 17] & 30 & 8 \\
          \hline
           D & BasketballPass & 500 & 416x240 & [0, 32, 56] & 50 & 8 \\
          \hline
           D & BlowingBubbles & 500 & 416x240 & [0, 41, 77] & 50 & 8 \\
           \hline
-          D & RaceHorses & 500 & 416x240 & [0, 17] & 30 & 8 \\
+          D & RaceHorsesD \footnotemark[\getrefnumber{footnote:RaceHorses_name}] & 500 & 416x240 & [0, 17] & 30 & 8 \\
           \hline
           E & KristenAndSara & 600 & 1280x720 & [0, 63, 67] & 60 & 8 \\
           \hline
@@ -37,3 +37,5 @@
     }
     \label{tab:seq_list}
 \end{table}
+
+% reference https://tex.stackexchange.com/questions/252537/footnote-issue-in-overleaf for footnote, also using tablefootnote package
