@@ -37,7 +37,7 @@ where $\mathbf{H}$ is a measurement matrix represented as
 \mathbf{H} = \left[ \begin{matrix} 1 & 0 & 0 & 0 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 & 0 & 0 & 0 \\ 0 & 0 & 1 & 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 1 & 0 & 0 & 0 \end{matrix} \right]
 \label{eqn:measurement_matrix}
 \end{equation}
-Given the apriori estimates from Equation \eqref{eqn:state_apriori_update}, \eqref{eqn:error_apriori_update} and the estimated measurement $\mathbf{H} \mathbf{\hat{x}}_{k}^-$, Kalman filter framework corrects the apriori estimates, updating them to have aposteriori estimates using the current measurement $\mathbf{z}_k$. The equations for the aposteriori estimates will be
+Given the apriori\footnote{Apriori estimates are the estimated states and covariance before the correction.} estimates from Equation \eqref{eqn:state_apriori_update}, \eqref{eqn:error_apriori_update} and the estimated measurement $\mathbf{H} \mathbf{\hat{x}}_{k}^-$, Kalman filter framework corrects the apriori estimates, updating them to have aposteriori\footnote{Aposteriori estimates are the estimated states and covariance after the correction.} estimates using the current measurement $\mathbf{z}_k$. The equations for the aposteriori estimates will be
 \begin{equation}
 \mathbf{K}_{k} = \mathbf{P}_{k}^{-} \mathbf{H}^\mathsf{T} (\mathbf{H} \mathbf{P}_{k}^{-} \mathbf{H}^\mathsf{T} + \mathbf{R} )^{-1} ~ ,
 \label{eqn:Kalman_gain_update}
