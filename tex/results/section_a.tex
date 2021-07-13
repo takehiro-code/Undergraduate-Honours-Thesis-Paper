@@ -49,7 +49,8 @@ where $\beta_0$ is the intercept; $\beta_1$ and $\beta_2$ are the parameters of 
 \end{equation}
 Since $\sigma_i$ is the truth value of standard deviation at each $\text{QP}'$, we estimate $w_i$ using the sample standard deviation $s_i$ of data points at each $\text{QP}'$.
 
-We utilized the Python package \cite{seabold_statsmodels_2010} for computation, and Table \ref{tab:regression} shows the results from the multiple linear regression analysis of the MOTA score.
+\setcounter{footnote}{1} % manully changing the footnote number. Referenced: https://tex.stackexchange.com/questions/359702/how-to-manually-reset-the-footnote-numbering-in-context
+We utilized the Python package \cite{seabold_statsmodels_2010} for computation, and Table \ref{tab:regression} shows the results from the multiple linear regression analysis of the MOTA score\footnote{Each number only shows two decimal places, and -0.00 is not exactly zero but very small negative number. For 0.00, the value is very small positive number.}.
 \input{tex/tables/regression}
 To see if the impact of the independent variable is statistically significant on the dependent variable, we conducted a hypothesis test at a significance level of 0.05. The null hypothesis is the case the parameter is 0 and the alternative hypothesis is the case the parameter is not zero.
 \begin{equation}
