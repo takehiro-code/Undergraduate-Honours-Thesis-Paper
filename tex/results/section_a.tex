@@ -34,7 +34,7 @@ To examine the impact of QP and MSR on tracking accuracy quantitatively, we cond
 However, using all the video sequences, which have different MOTA scores, the variance at each $\text{QP}'$ is high, and little insight can be derived from the high variance of data as shown in Figure \ref{fig:MOTA_transformation_before}. Therefore, we transformed MOTA such that we subtract each MOTA score at different $\text{QP}'$ from the uncompressed MOTA score, as represented below.
 \input{tex/figures/MOTA_transformation}
 \begin{equation}
-\text{MOTA}_i' = \text{MOTA(Uncompressed)} -  \text{MOTA}(\text{QP}_i)
+\text{MOTA}_i' = \text{MOTA(Uncompressed)} -  \text{MOTA}(\text{QP}_i')
 \label{eqn:MOTA_transformation}
 \end{equation}
 Doing this transformation, we only consider the drop of the MOTA score from the uncompressed sequence, and the variance is lower at higher $\text{QP}'$, in other words, the variance is lower at lower QP. This is expected because $\text{MOTA(Uncompressed)}$ and $\text{MOTA}(\text{QP}_i)$ are both random variables, and the difference of these two variables will be lower at lower QP. Figure \ref{fig:MOTA_transformation_after} shows the scatter plot of all the video sequences after the MOTA transformation. We can see from this figure that the relationship between $\text{MOTA}'$ and $\text{QP}'$ is still linear but error variance at each $\text{QP}'$ is not constant. Therefore, the weighted least squares method is adopted in the regression model. Also, since we have two continuous independent variables of $\text{QP}'$ and MSR and each may impact the continuous response variable of the $\text{MOTA}'$ score, we applied a multiple linear regression across all the video sequences. We represent the regression model as,
